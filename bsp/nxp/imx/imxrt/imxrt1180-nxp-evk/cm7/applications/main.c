@@ -14,10 +14,11 @@
 #include <drv_gpio.h>
 #include <fsl_rgpio.h>
 
+extern void ecat_main(void);
 int main(void)
 {
     rt_kprintf("MIMXRT1180_CM7 Hello_World\r\n");
-
+    ecat_main();
      while (1)
      {
          rt_thread_mdelay(500);

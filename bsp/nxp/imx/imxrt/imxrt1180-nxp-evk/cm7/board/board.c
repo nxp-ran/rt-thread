@@ -24,6 +24,7 @@
 #define NVIC_PRIORITYGROUP_4         0x00000003U /*!< 4 bits for pre-emption priority
                                                       0 bits for subpriority */
 
+extern void rt_ethercat_init();
 /* MPU configuration. */
 void BOARD_ConfigMPU(void)
 {
@@ -269,7 +270,7 @@ void imxrt_uart_pins_init(void)
 #endif
 }
 
-void rt_hw_board_init()
+void rt_hw_board_init(void)
 {
     BOARD_ConfigMPU();
     BOARD_InitPins();
@@ -292,6 +293,10 @@ void rt_hw_board_init()
 
 #ifdef RT_USING_CONSOLE
     rt_console_set_device(RT_CONSOLE_DEVICE_NAME);
+#endif
+
+#ifdef BSP_USING_ETHERCAT
+    rt_ethercat_init();
 #endif
 }
 

@@ -7,9 +7,14 @@ src = Split("""
 board.c
 MCUX_Config/clock_config.c
 MCUX_Config/pin_mux.c
+ethercat_init.c
+digital_io.c
 """)
 
-CPPPATH = [cwd,cwd + '/MCUX_Config',cwd + '/ports']
+# add the SSC.
+ssc_src = Glob('SSC/Src/*.c')
+
+CPPPATH = [cwd,cwd + '/MCUX_Config',cwd + '/ports',cwd + '/SSC/Src']
 CPPDEFINES = ['CPU_MIMXRT1189CVM8C_cm7', 'MIMXRT1189_cm7_SERIES', 'FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL=1', 'ARM_MATH_CM7']
 
 if rtconfig.PLATFORM in ['gcc']:
@@ -22,6 +27,7 @@ if rtconfig.PLATFORM in ['armcc', 'armclang']:
 if rtconfig.PLATFORM in ['iccarm']:
     CPPDEFINES += ['NDEBUG']
 
-group = DefineGroup('Drivers', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
-
+group = []
+group += DefineGroup('Drivers', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
+group += DefineGroup('SSC', ssc_src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
 Return('group')

@@ -54,6 +54,11 @@ menu "On-chip Peripheral Drivers"
         default n
     endif
 
+    config BSP_USING_ETHERCAT
+        bool "Enable ETHERCAT"
+        select RT_USING_ETHERCAT
+        default n
+    
     config BSP_USING_SDIO
         bool "Enable SDIO"
         select RT_USING_SDIO
