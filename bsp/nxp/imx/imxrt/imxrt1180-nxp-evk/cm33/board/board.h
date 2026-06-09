@@ -161,6 +161,7 @@ void DCDC_SetVoltage(uint8_t core, uint8_t targetVoltage);
 void BOARD_NETC_Init(void);
 void BOARD_RequestTRDC(bool bRequestAON, bool bRequestWakeup, bool bReqeustMega);
 void BOARD_CommonSetting(void);
+void PHY_Reset(void);
 
 /* </RDTConfigurator>*/
 #if defined(__ARMCC_VERSION)

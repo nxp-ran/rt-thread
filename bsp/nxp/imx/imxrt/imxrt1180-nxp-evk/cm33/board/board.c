@@ -22,6 +22,9 @@
 #include "fsl_dcdc.h"
 #include "fsl_trdc.h"
 #include "fsl_rgpio.h"
+#include "fsl_netc_endpoint.h"
+#include "fsl_netc_switch.h"
+#include "fsl_netc_mdio.h"
 /*******************************************************************************
  * Definitions
  ******************************************************************************/
@@ -434,13 +437,13 @@ void BOARD_ConfigMPU(void)
     ARM_MPU_SetRegion(9U, ARM_MPU_RBAR(0x20500000, ARM_MPU_SH_NON, 0U, 1U, 0U), ARM_MPU_RLAR(0x2053FFFF, 1U));
 #endif
 
-    // Region 11 (OCRAM1): [0x20480000, 0x204FFFFF, 512K]
-    // non-shareable, read/write in privilege and non-privilege, executable. Attr 3
-    ARM_MPU_SetRegion(11U, ARM_MPU_RBAR(0x20480000, ARM_MPU_SH_NON, 0U, 1U, 0U), ARM_MPU_RLAR(0x204FFFFF, 2U));
-
-    // Region 12 (OCRAM2): [0x20500000, 0x2053FFFF, 256K]
-    // non-shareable, read/write in privilege and non-privilege, executable. Attr 3
-    ARM_MPU_SetRegion(12U, ARM_MPU_RBAR(0x20500000, ARM_MPU_SH_NON, 0U, 1U, 0U), ARM_MPU_RLAR(0x2053FFFF, 2U));
+//    // Region 11 (OCRAM1): [0x20480000, 0x204FFFFF, 512K]
+//    // non-shareable, read/write in privilege and non-privilege, executable. Attr 3
+//    ARM_MPU_SetRegion(11U, ARM_MPU_RBAR(0x20480000, ARM_MPU_SH_NON, 0U, 1U, 0U), ARM_MPU_RLAR(0x204FFFFF, 2U));
+//
+//    // Region 12 (OCRAM2): [0x20500000, 0x2053FFFF, 256K]
+//    // non-shareable, read/write in privilege and non-privilege, executable. Attr 3
+//    ARM_MPU_SetRegion(12U, ARM_MPU_RBAR(0x20500000, ARM_MPU_SH_NON, 0U, 1U, 0U), ARM_MPU_RLAR(0x2053FFFF, 2U));
 
     /* Enable MPU */
     ARM_MPU_Enable(MPU_CTRL_PRIVDEFENA_Msk | MPU_CTRL_HFNMIENA_Msk);
@@ -1237,6 +1240,15 @@ void imxrt_uart_pins_init(void)
 }
 #endif /* BSP_USING_LPUART */
 
+void PHY_Reset(void)
+{
+    /* Reset PHY8201 for ETH4. Reset 10ms, wait 72ms. */
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO_PIN, 0);
+    SDK_DelayAtLeastUs(10000, CLOCK_GetFreq(kCLOCK_CpuClk));
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO_PIN, 1);
+    SDK_DelayAtLeastUs(72000, CLOCK_GetFreq(kCLOCK_CpuClk));  
+}
+
 #define NVIC_PRIORITYGROUP_0         0x00000007U /*!< 0 bits for pre-emption priority
                                                       4 bits for subpriority */
 #define NVIC_PRIORITYGROUP_1         0x00000006U /*!< 1 bits for pre-emption priority
@@ -1252,7 +1264,7 @@ void rt_hw_board_init()
 {
 //    BOARD_CommonSetting();
     BOARD_ConfigMPU();
-    BOARD_InitPins();
+    BOARD_InitBootPins();
 
     BOARD_InitLeds();
     BOARD_BootClockRUN();

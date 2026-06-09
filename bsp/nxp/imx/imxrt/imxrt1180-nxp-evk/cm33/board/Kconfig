@@ -159,41 +159,22 @@ menu "Onboard Peripheral Drivers"
 
     menuconfig BSP_USING_ETH
     bool "Enable Ethernet"
+	select RT_USING_SAL
     select RT_USING_NETDEV
     select RT_USING_LWIP
     default n
 
 
     if BSP_USING_ETH
+        config LWIP_SUPPORT_CUSTOM_PBUF
+            int
+            depends on RT_USING_LWIP_VER_NUM >= 0x20000
+            default 1
+
         config BSP_USING_PHY
             select RT_USING_PHY
             bool "Enable ethernet phy"
             default y
-
-        if BSP_USING_PHY
-            config PHY_USING_KSZ8081
-                bool "i.MX RT1189EVK uses ksz8081 phy"
-                default y
-
-            if PHY_USING_KSZ8081
-                config PHY_KSZ8081_ADDRESS
-                int "Specify address of phy device"
-                default 2
-
-                config PHY_RESET_KSZ8081_PORT
-                    int "indicate port of reset"
-                    default 6
-
-                config PHY_RESET_KSZ8081_PIN
-                    int "indicate pin of reset"
-                    default 12
-
-                config FSL_FEATURE_PHYKSZ8081_USE_RMII50M_MODE
-                    bool "Enable the PHY ksz8081 RMII50M mode"
-                    depends on PHY_USING_KSZ8081
-                    default y
-            endif
-        endif
 
         if BSP_USING_PHY
                 config PHY_USING_RTL8211F
