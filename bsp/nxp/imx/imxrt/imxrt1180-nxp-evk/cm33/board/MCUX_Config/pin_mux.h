@@ -117,6 +117,30 @@ void BOARD_InitPhyAccessPins(void);           /* Function assigned for the Corte
  */
 void BOARD_InitEpPins(void);                  /* Function assigned for the Cortex-M33 */
 
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void BOARD_InitSwtPort0Pins(void);            /* Function assigned for the Cortex-M33 */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void BOARD_InitSwtPort1Pins(void);            /* Function assigned for the Cortex-M33 */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void BOARD_InitSwtPort2Pins(void);            /* Function assigned for the Cortex-M33 */
+
+/*!
+ * @brief Configures pin routing and optionally pin electrical features.
+ *
+ */
+void BOARD_InitSwtPort3Pins(void);            /* Function assigned for the Cortex-M33 */
+
 #if defined(__cplusplus)
 }
 #endif

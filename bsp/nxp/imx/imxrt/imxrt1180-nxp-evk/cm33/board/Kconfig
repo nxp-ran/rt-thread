@@ -171,31 +171,15 @@ menu "Onboard Peripheral Drivers"
             depends on RT_USING_LWIP_VER_NUM >= 0x20000
             default 1
 
+        config NETC_USE_SWT
+            int "Enable NETC switch mode (0: EP0, 1: switch)"
+            range 0 1
+            default 0
+
         config BSP_USING_PHY
             select RT_USING_PHY
             bool "Enable ethernet phy"
             default y
-
-        if BSP_USING_PHY
-                config PHY_USING_RTL8211F
-                    bool "i.MX RT1189EVK uses rtl8211f phy"
-                    default y
-
-                if PHY_USING_RTL8211F
-                    config PHY_RTL8211F_ADDRESS
-                    int "Specify address of phy device"
-                    default 1
-
-                    config PHY_RESET_RTL8211F_PORT
-                        int "indicate port of reset"
-                        default 5
-
-                    config PHY_RESET_RTL8211F_PIN
-                        int "indicate pin of reset"
-                        default 14
-
-                endif
-        endif
     endif
 
     menuconfig BSP_USING_FS
