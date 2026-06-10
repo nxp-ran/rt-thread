@@ -4,6 +4,11 @@ RTT_DIR := ../../../../../..
 
 PKGS_DIR := packages
 
+config RT_TIMER_THREAD_STACK_SIZE
+    int
+    range 1024 65535 if BSP_USING_CHERRYUSB_HOST
+    default 1024 if BSP_USING_CHERRYUSB_HOST
+
 source "$(RTT_DIR)/Kconfig"
 osource "$PKGS_DIR/Kconfig"
 rsource "../../libraries/Kconfig"

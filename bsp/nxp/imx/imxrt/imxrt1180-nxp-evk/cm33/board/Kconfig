@@ -36,20 +36,44 @@ menu "On-chip Peripheral Drivers"
         select RT_USING_RTC
         default n
 
-    config BSP_USING_USB
-        bool "Enable USB"
-        select RT_USING_USB_HOST
+    menuconfig BSP_USING_USB
+        bool "Enable USB (CherryUSB)"
         default n
 
     if BSP_USING_USB
-    config BSP_USB0_HOST
-        bool "Enable USB0"
-        default n
+        choice
+            prompt "USB controller"
+            default BSP_CHERRYUSB_USING_OTG1
 
-    config BSP_USB1_HOST
-        bool "Enable USB1"
+            config BSP_CHERRYUSB_USING_OTG1
+                bool "USB OTG1"
+
+            config BSP_CHERRYUSB_USING_OTG2
+                bool "USB OTG2"
+        endchoice
+
+        choice
+            prompt "USB role"
+            default BSP_USING_CHERRYUSB_DEVICE
+
+            config BSP_USING_CHERRYUSB_DEVICE
+                bool "Enable USB Device"
+                select RT_USING_CHERRYUSB
+                select RT_CHERRYUSB_DEVICE
+
+            config BSP_USING_CHERRYUSB_HOST
+                bool "Enable USB Host"
+                select RT_USING_CHERRYUSB
+                select RT_CHERRYUSB_HOST
+                select RT_USING_TIMER_SOFT
+        endchoice
+
+    config BSP_CHERRYUSB_HOST_MOUSE_DEMO
+        bool "Enable CherryUSB host mouse shell demo"
+        depends on BSP_USING_CHERRYUSB_HOST
+        select RT_CHERRYUSB_HOST_HID
         default n
-    endif
+endif
 
     config BSP_USING_SDIO
         bool "Enable SDIO"
