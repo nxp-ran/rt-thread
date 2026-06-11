@@ -648,7 +648,7 @@ static rt_err_t _netc_hw_init(struct rt_imxrt_netc *netc)
     CLOCK_EnableClock(kCLOCK_Netc);
 
     /* RT1180 NETC access needs TRDC permissions and board-side NETC strap setup. */
-    BOARD_CommonSetting();
+    //BOARD_CommonSetting();
     PHY_Reset();
     BOARD_NETC_Init();
 

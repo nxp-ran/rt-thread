@@ -7,11 +7,23 @@
 
 #include <rthw.h>
 #include <rtthread.h>
+#include "fsl_common.h"
 #include "board.h"
-#include "pin_mux.h"
+#if defined(SDK_NETC_USED) && SDK_NETC_USED
+    #include "fsl_netc_soc.h"
+    #include "fsl_netc_ierb.h"
+#endif /* SDK_NETC_USED */
 #include "fsl_iomuxc.h"
-#include "fsl_rgpio.h"
 #include "fsl_cache.h"
+#include "fsl_dcdc.h"
+#include "fsl_rgpio.h"
+#include "fsl_netc_endpoint.h"
+#include "fsl_netc_switch.h"
+#include "fsl_netc_mdio.h"
+/*******************************************************************************
+ * Definitions
+ ******************************************************************************/
+#define BOARD_FLEXSPI_DLL_LOCK_RETRY (10)
 
 #define NVIC_PRIORITYGROUP_0         0x00000007U /*!< 0 bits for pre-emption priority
                                                       4 bits for subpriority */
@@ -230,6 +242,48 @@ void BOARD_ConfigMPU(void)
 }
 
 /* This is the timer interrupt service routine. */
+#if defined(SDK_NETC_USED) && SDK_NETC_USED
+void BOARD_NETC_Init(void)
+{
+    /* EP and Switch port 0 use RMII interface. */
+    NETC_SocSetMiiMode(kNETC_SocLinkEp0, kNETC_RmiiMode);
+    NETC_SocSetMiiMode(kNETC_SocLinkSwitchPort0, kNETC_RmiiMode);
+
+    /* Switch port 1~3 use RGMII interface. */
+    NETC_SocSetMiiMode(kNETC_SocLinkSwitchPort1, kNETC_RgmiiMode);
+    NETC_SocSetMiiMode(kNETC_SocLinkSwitchPort2, kNETC_RgmiiMode);
+    NETC_SocSetMiiMode(kNETC_SocLinkSwitchPort3, kNETC_RgmiiMode);
+
+    /* Output reference clock for RMII interface. */
+    NETC_SocSetRmiiRefClk(kNETC_SocLinkEp0, true);
+    NETC_SocSetRmiiRefClk(kNETC_SocLinkSwitchPort0, true);
+
+    /* Unlock the IERB. It will warm reset whole NETC. */
+    if (NETC_IERBUnlock() == kStatus_Success)
+    {
+        while (!NETC_IERBIsUnlockOver())
+        {
+        }
+    }
+
+    /* Set the access attribute, otherwise MSIX access will be blocked. */
+    NETC_IERB->ARRAY_NUM_RC[0].RCMSIAMQR &= ~(7U << 27);
+    NETC_IERB->ARRAY_NUM_RC[0].RCMSIAMQR |= (1U << 27);
+
+    /* Set PHY address in IERB to use MAC port MDIO, otherwise the access will be blocked. */
+    NETC_SocSetLinkAddr(kNETC_SocLinkEp0, BOARD_EP0_PHY_ADDR);
+    NETC_SocSetLinkAddr(kNETC_SocLinkSwitchPort0, BOARD_SWT_PORT0_PHY_ADDR);
+    NETC_SocSetLinkAddr(kNETC_SocLinkSwitchPort1, BOARD_SWT_PORT1_PHY_ADDR);
+    NETC_SocSetLinkAddr(kNETC_SocLinkSwitchPort2, BOARD_SWT_PORT2_PHY_ADDR);
+    NETC_SocSetLinkAddr(kNETC_SocLinkSwitchPort3, BOARD_SWT_PORT3_PHY_ADDR);
+
+    /* Lock the IERB. */
+    assert(NETC_IERBLock() == kStatus_Success);
+    while (!NETC_IERBIsLockOver())
+    {
+    }
+}
+#endif /* SDK_NETC_USED */
 void SysTick_Handler(void)
 {
     /* enter interrupt */
@@ -269,10 +323,26 @@ void imxrt_uart_pins_init(void)
 #endif
 }
 
+void PHY_Reset(void)
+{
+    /* Reset PHY8201 for ETH4. Reset 10ms, wait 72ms. */
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO_PIN, 0);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET3_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET3_RST_B_GPIO_PIN, 0);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET2_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET2_RST_B_GPIO_PIN, 0);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET1_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET1_RST_B_GPIO_PIN, 0);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET0_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET0_RST_B_GPIO_PIN, 0);
+    SDK_DelayAtLeastUs(10000, CLOCK_GetFreq(kCLOCK_CpuClk));
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET4_RST_B_GPIO_PIN, 1);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET3_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET3_RST_B_GPIO_PIN, 1);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET2_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET2_RST_B_GPIO_PIN, 1);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET1_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET1_RST_B_GPIO_PIN, 1);
+    RGPIO_PinWrite(BOARD_INITPHYACCESSPINS_ENET0_RST_B_GPIO, BOARD_INITPHYACCESSPINS_ENET0_RST_B_GPIO_PIN, 1);
+    SDK_DelayAtLeastUs(150000, CLOCK_GetFreq(kCLOCK_CpuClk));  
+}
 void rt_hw_board_init()
 {
     BOARD_ConfigMPU();
-    BOARD_InitPins();
+    BOARD_InitBootPins();
     BOARD_BootClockRUN();
 
     NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
