@@ -16,10 +16,12 @@
 
 int main(void)
 {
-    rt_kprintf("MIMXRT1180_CM7 Hello_World\r\n");
+    rt_kprintf("\r\n=== MIMXRT1180_CM7 ===\r\n");
 
-     while (1)
-     {
-         rt_thread_mdelay(500);
-     }
+    while (1)
+    {
+        rt_thread_mdelay(1000);
+    }
+
+    return 0;
 }

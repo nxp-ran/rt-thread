@@ -733,6 +733,8 @@
                 </option>
                 <option>
                     <name>IlinkConfigDefines</name>
+                    <state>__use_shmem__=1</state>
+                    <state>__multicore__=1</state>                    
                     <state></state>
                 </option>
                 <option>
@@ -765,7 +767,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state>$PROJ_DIR$\board\linker_scripts\link.icf</state>
+                    <state>$PROJ_DIR$\board\linker_scripts\MIMXRT1189xxxxx_cm33_flexspi_nor.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>
@@ -1817,6 +1819,8 @@
                 </option>
                 <option>
                     <name>IlinkConfigDefines</name>
+                    <state>__use_shmem__=1</state>
+                    <state>__multicore__=1</state>                    
                     <state></state>
                 </option>
                 <option>
@@ -1849,7 +1853,7 @@
                 </option>
                 <option>
                     <name>IlinkIcfFile</name>
-                    <state>lnk0t.icf</state>
+                    <state>$PROJ_DIR$\board\linker_scripts\MIMXRT1189xxxxx_cm33_flexspi_nor.icf</state>
                 </option>
                 <option>
                     <name>IlinkIcfFileSlave</name>

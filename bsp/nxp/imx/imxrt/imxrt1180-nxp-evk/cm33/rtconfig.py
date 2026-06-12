@@ -32,6 +32,16 @@ if os.getenv('RTT_EXEC_PATH'):
 BUILD = 'debug'
 # BUILD = 'release'
 
+# Check if HyperRAM is enabled from rtconfig.h
+HYPERRAM_ENABLED = False
+rtconfig_h_path = os.path.join(os.path.dirname(__file__), 'rtconfig.h')
+if os.path.exists(rtconfig_h_path):
+    with open(rtconfig_h_path, 'r') as f:
+        for line in f:
+            if '#define BSP_USING_HYPERRAM' in line and not line.strip().startswith('//'):
+                HYPERRAM_ENABLED = True
+                break
+
 if PLATFORM == 'gcc':
     PREFIX = 'arm-none-eabi-'
     CC = PREFIX + 'gcc'
@@ -49,7 +59,14 @@ if PLATFORM == 'gcc':
     
     CFLAGS = DEVICE + ' -Wall -D__FPU_PRESENT'
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -D__START=entry -D__STARTUP_CLEAR_BSS'
-    LFLAGS = DEVICE + ' -specs=nano.specs -specs=nosys.specs -Wl,--gc-sections,-Map=rtthread.map,--print-memory-usage -T board/linker_scripts/link.lds'
+    
+    # Select linker script based on HyperRAM configuration
+    if HYPERRAM_ENABLED:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram.ld'
+    else:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor.ld'
+    
+    LFLAGS = DEVICE + ' -specs=nano.specs -specs=nosys.specs -Wl,--gc-sections,-Map=rtthread.map,--print-memory-usage -T ' + LINKER_SCRIPT
 
     CPATH = ''
     LPATH = ''
@@ -88,7 +105,14 @@ elif PLATFORM == 'armcc':
     DEVICE = ' --cpu ' + CPU + '.fp.sp'
     CFLAGS = DEVICE + ' --apcs=interwork'
     AFLAGS = DEVICE
-    LFLAGS = DEVICE + ' --libpath "' + EXEC_PATH + '\ARM\ARMCC\lib" --info sizes --info totals --info unused --info veneers --list rtthread.map --scatter "board\linker_scripts\link.scf"'
+    
+    # Select linker script based on HyperRAM configuration
+    if HYPERRAM_ENABLED:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram.scf'
+    else:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor.scf'
+    
+    LFLAGS = DEVICE + ' --libpath "' + EXEC_PATH + '\ARM\ARMCC\lib" --info sizes --info totals --info unused --info veneers --list rtthread.map --scatter "' + LINKER_SCRIPT + '"'
 
     LFLAGS += ' --keep *.o(.rti_fn.*)   --keep *.o(FSymTab) --keep *.o(VSymTab)' 
 
@@ -129,9 +153,16 @@ elif PLATFORM == 'armclang':
     AFLAGS = DEVICE + ' --apcs=interwork '
     AFLAGS += ' -x assembler-with-cpp'
     AFLAGS += ' -Wa,-mimplicit-it=thumb'
+    
+    # Select linker script based on HyperRAM configuration
+    if HYPERRAM_ENABLED:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram'
+    else:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor'
+    
     LFLAGS = DEVICE + ' --info sizes --info totals --info unused --info veneers '
     LFLAGS += ' --list rt-thread.map '
-    LFLAGS += r' --strict --scatter "board/linker_scripts/link" '
+    LFLAGS += r' --strict --scatter "' + LINKER_SCRIPT + '" '
     CFLAGS += ' -I' + EXEC_PATH + '/ARM/ARMCLANG/include'
     LFLAGS += ' --libpath=' + EXEC_PATH + '/ARM/ARMCLANG/lib'
 
@@ -179,7 +210,13 @@ elif PLATFORM == 'iccarm':
     else:
         CFLAGS += ' -Oh'
 
-    LFLAGS = ' --config "board/linker_scripts/link.icf"'
+    # Select linker script based on HyperRAM configuration
+    if HYPERRAM_ENABLED:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram.icf'
+    else:
+        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor.icf'
+    
+    LFLAGS = ' --config "' + LINKER_SCRIPT + '"'
     LFLAGS += ' --redirect _Printf=_PrintfTiny'
 
     CXXFLAGS = CFLAGS
@@ -190,6 +227,7 @@ elif PLATFORM == 'iccarm':
 def dist_handle(BSP_ROOT, dist_dir):
     import sys
     cwd_path = os.getcwd()
-    sys.path.append(os.path.join(os.path.dirname(os.path.dirname(BSP_ROOT)), 'tools'))
+    # sys.path.append(os.path.join(os.path.dirname(BSP_ROOT), 'tools'))
+    sys.path.append(os.path.join(os.path.dirname(BSP_ROOT), 'tools'))
     from sdk_dist import dist_do_building
     dist_do_building(BSP_ROOT, dist_dir)

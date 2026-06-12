@@ -3,7 +3,11 @@ from building import *
 import os
 
 cwd = GetCurrentDir()
-src = Glob('*.c')
+
+src = Split("""
+main.c
+""")
+
 CPPPATH = [cwd]
 
 # add for startup script
@@ -12,6 +16,12 @@ if rtconfig.PLATFORM in ['gcc']:
 else:
     CPPDEFINES = []
 
+if GetDepend(['BSP_USE_MULTICORE']):
+    src += Split("""
+    multicore_thread.c
+    """)
+
+# Create application group
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
 
 Return('group')
