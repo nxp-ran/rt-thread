@@ -49,9 +49,12 @@ if GetDepend('BSP_USING_LCD'):
     src += ['drv_lcd.c']
 
 if GetDepend('BSP_USING_ETH'):
-    src += ['drv_eth.c']
+    if GetDepend('SOC_IMXRT1180_SERIES'):
+        src += ['drv_netc.c']
+    else:
+        src += ['drv_eth.c']
 
-if GetDepend('BSP_USING_PHY'):
+if GetDepend('BSP_USING_PHY') and not GetDepend('SOC_IMXRT1180_SERIES'):
     src += ['drv_mdio.c']
     if GetDepend('PHY_USING_KSZ8081'):
         src += ['drv_ksz8081.c']
@@ -104,4 +107,3 @@ src += ['drv_common.c']
 group = DefineGroup('Drivers', src, depend = [''], CPPPATH = path, CPPDEFINES=CPPDEFINES)
 
 Return('group')
-
