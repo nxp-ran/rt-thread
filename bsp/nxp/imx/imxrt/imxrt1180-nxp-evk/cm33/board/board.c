@@ -1507,7 +1507,7 @@ void rt_hw_board_init()
 {
     BOARD_CommonSetting();
     BOARD_ConfigMPU();
-    BOARD_InitPins();
+    BOARD_InitBootPins();
     BOARD_BootClockRUN();
 
     NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
