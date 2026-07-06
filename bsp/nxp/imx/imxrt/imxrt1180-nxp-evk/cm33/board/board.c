@@ -49,6 +49,8 @@
 #define BOARD_FLEXSPI_DLL_LOCK_RETRY (10)
 
 #ifdef BSP_USE_MULTICORE
+#define ENABLE_CM7_TCM_ECC 0U
+
 /*
  * This workaround is used for kick-off CM7 when CM7 image vector table is not
  * at 0x0 and CM7 TCM ECC fuse is set(1).
@@ -68,6 +70,7 @@
 
 #define CM7_ITCM_START_ADDR              0x0UL      /* from pespective of CM7 */
 #define CM7_ITCM_END_ADDR                0x80000UL  /* from pespective of CM7 */
+#define CM7_ITCM_SIZE                    0x80000UL  /* from pespective of CM7 */
 #define CM7_ITCM_ADDR_MAP_AT_CM33_DOMAIN 0x303C0000 /* from pespective of CM33 */
 #endif
 
@@ -221,6 +224,7 @@ status_t BOARD_GetCore1ImageAddrSize(uint32_t *pImageSrcAddr,
  */
 void BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint32_t image_size, uint32_t boot_addr)
 {
+    /* The Cortex M7 XIP image runs from NOR Flash  */
     if ((boot_addr >= CM7_ITCM_END_ADDR) || ((CM7_ITCM_START_ADDR > 0U) && (boot_addr < CM7_ITCM_START_ADDR)))
     {
         /* Out of CM7 ITCM address space, CM7 core and its TCM ECC probably not initialized yet, do it here */
@@ -247,6 +251,25 @@ void BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint3
         pRamVect[0]         = pBootVect[0];
         pRamVect[1]         = pBootVect[1];
 #endif /* (defined(ENABLE_WORKAROUND_CM7_KICK_OFF) && (ENABLE_WORKAROUND_CM7_KICK_OFF > 0U)) */
+    }
+    /* The Cortex M7 image runs from internal ITCM RAM  */
+    else
+    {
+#if ENABLE_CM7_TCM_ECC
+		/* Do noting, CM7 image has been copied by ROM */
+#else			
+        Prepare_CM7(boot_addr);
+        /* Copy CM7 image from FLASH to CM7 ITCM */
+        if ((image_size > 0) && (image_size < CM7_ITCM_SIZE))
+        {
+            /* Use memcpy to copy the image */
+            (void)memcpy((void *)CM7_ITCM_ADDR_MAP_AT_CM33_DOMAIN, (void *)image_src_addr, image_size);
+            
+            /* Ensure data is written to memory before CM7 starts */
+            __DSB();
+            __ISB();
+        }
+#endif
     }
 }
 #endif
@@ -1534,4 +1557,3 @@ void rt_hw_board_init()
 #endif
 
 }
-

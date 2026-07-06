@@ -63,25 +63,23 @@ static bool error_occurred = false;
 /*******************************************************************************
  * Private Functions
  ******************************************************************************/
-  #ifdef BSP_USE_MULTICORE_KICK_OFF
-  static rt_err_t multicore_kickoff_init(void)
-  {
-    //   uint32_t core1_image_size, core1_image_source_addr, core1_image_dest_addr;
-    //   uint32_t core1_boot_addr;
-      mcmgr_status_t status;
+#ifdef BSP_USE_MULTICORE_KICK_OFF
+static rt_err_t multicore_kickoff_init(void)
+{
+		mcmgr_status_t status;
 
-      rt_kprintf("[Multicore] Initializing MCMGR ...\r\n");
-      status = MCMGR_Init();
-      if (status != kStatus_MCMGR_Success)
-      {
-          rt_kprintf("[Multicore] MCMGR initialization failed!\r\n");
-          return -RT_ERROR;
-      }
-      rt_kprintf("[Multicore] MCMGR initialized successfully\r\n");
+		rt_kprintf("[Multicore] Initializing MCMGR ...\r\n");
+		status = MCMGR_Init();
+		if (status != kStatus_MCMGR_Success)
+		{
+				rt_kprintf("[Multicore] MCMGR initialization failed!\r\n");
+				return -RT_ERROR;
+		}
+		rt_kprintf("[Multicore] MCMGR initialized successfully\r\n");
 
-      return RT_EOK;
-  }
-  #endif /* BSP_USE_MULTICORE_KICK_OFF */
+		return RT_EOK;
+}
+#endif /* BSP_USE_MULTICORE_KICK_OFF */
 #ifdef BSP_USE_MULTICORE_RPMSG_LITE
 static void app_nameservice_isr_cb(uint32_t new_ept, const char *new_ept_name, 
                                    uint32_t flags, void *user_data)
@@ -211,6 +209,11 @@ static void rpmsg_lite_cleanup(void)
  ******************************************************************************/
 static void multicore_thread_entry(void *parameter)
 {
+#ifndef BSP_USE_MULTICORE_RPMSG_LITE		
+    uint32_t startupData;
+    mcmgr_status_t status;		
+#endif
+		
     rt_kprintf("\r\n=== Multicore Communication Thread Started ===\r\n");
 
 #ifdef BSP_USE_MULTICORE_KICK_OFF
@@ -245,6 +248,12 @@ cleanup:
     {
         rt_kprintf("[Multicore] Communication completed successfully!\r\n");
     }
+#else 
+		 /* Get the startup data */
+    do
+    {
+        status = MCMGR_GetStartupData(kMCMGR_Core0, &startupData);
+    } while (status != kStatus_MCMGR_Success);
 #endif
 
     rt_kprintf("=== Multicore Communication Thread Ended ===\r\n");
@@ -267,7 +276,7 @@ int multicore_init(void)
     if (tid != RT_NULL)
     {
         rt_thread_startup(tid);
-        rt_kprintf("[Multicore] Communication thread created successfully\r\n");
+//        rt_kprintf("[Multicore] Communication thread created successfully\r\n");
         return RT_EOK;
     }
     else
