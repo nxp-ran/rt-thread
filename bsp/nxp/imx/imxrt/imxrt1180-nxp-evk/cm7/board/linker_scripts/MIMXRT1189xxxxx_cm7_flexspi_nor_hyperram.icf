@@ -131,7 +131,8 @@ define block HEAP      with alignment = 8, size = __size_heap__     { };
 define block CACHE_LINE_DATA_ZI with alignment = 32, end alignment = 32 { section CacheLineData };
 define block CACHE_LINE_DATA_RW with alignment = 32, end alignment = 32 { section CacheLineData.init };
 
-initialize by copy { readwrite, section .textrw, section DataQuickAccess, section CodeQuickAccess };
+initialize by copy { readwrite, section .textrw, section DataQuickAccess, section CodeQuickAccess, 
+  ro code object fsl_flexspi.o, ro code object drv_flexspi_nor_flash.o, ro code object drv_flexspi.o };
 do not initialize  { section .noinit };
 if (isdefinedsymbol(__use_shmem__)) {
   do not initialize  { section rpmsg_sh_mem_section };
