@@ -155,7 +155,7 @@ define block CORE1_IMAGE_BLOCK  with alignment = 16, maximum size = m_core1_imag
 
 define block RO  with fixed order { readonly section .intvec, readonly, block CORE1_IMAGE_BLOCK };
 
-initialize by copy { readwrite, section .textrw, section DataQuickAccess, section CodeQuickAccess };
+initialize by copy { readwrite, section .textrw, section DataQuickAccess, section CodeQuickAccess, ro code object fsl_flexspi.o, ro code object drv_flexspi_nor_flash.o, ro code object drv_flexspi.o };
 do not initialize  { section .noinit };
 if (isdefinedsymbol(__use_shmem__)) {
   do not initialize  { section rpmsg_sh_mem_section };

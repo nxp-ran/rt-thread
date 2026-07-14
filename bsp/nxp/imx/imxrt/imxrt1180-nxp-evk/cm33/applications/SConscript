@@ -21,6 +21,11 @@ if GetDepend(['BSP_USE_MULTICORE']):
     multicore_thread.c
     """)
 
+if GetDepend(['BSP_USING_FS']):
+    src += Split("""
+    mnt.c
+    """)
+
 # Create application group
 group = DefineGroup('Applications', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
 

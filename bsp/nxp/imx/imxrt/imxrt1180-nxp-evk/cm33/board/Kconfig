@@ -74,19 +74,6 @@ menu "On-chip Peripheral Drivers"
         default n
     endif
 
-    # Stack size for RT-Thread timer thread when using CherryUSB host
-    config RT_TIMER_THREAD_STACK_SIZE
-        int "Timer thread stack size for CherryUSB host"
-        range 1024 65535 if BSP_USING_CHERRYUSB_HOST
-        default 2048 if BSP_USING_CHERRYUSB_HOST
-        help
-            "Stack size (in bytes) for the RT-Thread timer thread used by
-            CherryUSB when running in host mode. The minimal usable value
-            is 1024, but many host demos and class drivers require more
-            stack. Use 2048 as a conservative default, increase to 4096
-            if you use multiple host class drivers or encounter stack
-            overflows during USB activity."
-
     config BSP_USING_SDIO
         bool "Enable SDIO"
         select RT_USING_SDIO
@@ -283,6 +270,16 @@ endmenu
                 bool "Enable SDCARD (FATFS)"
                 select BSP_USING_SDIO
                 select RT_USING_DFS_ELMFAT
+                default n
+            
+            config BSP_USING_QSPI_FLASH_FS
+                bool "Enable QSPI Flash (LittleFS)"
+                select BSP_USING_FLEXSPI
+                select BSP_USING_FLEXSPI1
+                select RT_USING_FAL
+                select FAL_PART_HAS_TABLE_CFG
+                select RT_USING_MTD_NOR
+                select PKG_USING_LITTLEFS
                 default n
         endif
 
