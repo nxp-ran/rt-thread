@@ -26,11 +26,11 @@
 
 /*
  * Partition Plan (Total 16MB):
- *   0x00000000 ~ 0x007FFFFF: Application Code Area (8MB, limited by Scatter)
- *   0x00800000 ~ 0x00FFFFFF: File System Area (8MB, LittleFS)
+ *   0x00000000 ~ 0x00EFFFFF: Application Code Area (15MB, limited by Scatter)
+ *   0x00F00000 ~ 0x00FFFFFF: File System Area (1MB, LittleFS)
  */
-#define QSPI_FS_OFFSET       0x00800000U
-#define QSPI_FS_SIZE         0x00800000U
+#define QSPI_FS_OFFSET       0x00F00000U
+#define QSPI_FS_SIZE         0x00100000U
 
 /* ============================================================
  * RAM Code Section Attributes

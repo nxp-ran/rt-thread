@@ -28,8 +28,8 @@ extern const struct fal_flash_dev imxrt1180_nor_flash;
 /* partition table */
 #define FAL_PART_TABLE                                                               \
 {                                                                                    \
-    {FAL_PART_MAGIC_WROD, "app",        "norflash0",          0, 8*1024*1024, 0},  \
-    {FAL_PART_MAGIC_WROD, "filesystem", "norflash0", 8*1024*1024, 8*1024*1024, 0}, \
+    {FAL_PART_MAGIC_WROD, "app",        "norflash0",           0, 15*1024*1024, 0}, \
+    {FAL_PART_MAGIC_WROD, "filesystem", "norflash0", 15*1024*1024,  1*1024*1024, 0}, \
 }
 
 #endif /* FAL_PART_HAS_TABLE_CFG */
