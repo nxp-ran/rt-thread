@@ -17,7 +17,7 @@ if GetDepend(['BSP_USING_QSPI_FLASH_FS']):
     src += ['ports/drv_flexspi_nor_flash.c', 'ports/fal_flash_port.c']
 
 CPPPATH = [cwd, cwd + '/MCUX_Config', cwd + '/ports']
-CPPDEFINES = ['CPU_MIMXRT1189CVM8C_cm7', 'MIMXRT1189_cm7_SERIES', 'FSL_SDK_ENABLE_DRIVER_CACHE_CONTROL=1', 'ARM_MATH_CM7']
+CPPDEFINES = ['CPU_MIMXRT1189CVM8C_cm7', 'MIMXRT1189_cm7_SERIES', 'ARM_MATH_CM7']
 LINKFLAGS = ''
 
 if rtconfig.PLATFORM in ['gcc']:
@@ -34,6 +34,7 @@ if GetDepend(['BSP_USE_HYPERRAM']):
 
 if GetDepend(['BSP_USE_MULTICORE']):
     CPPDEFINES += ['__USE_SHMEM', 'MULTICORE_APP=1']
+    CPPDEFINES += ['XIP_EXTERNAL_FLASH=1']
     if rtconfig.PLATFORM in ['gcc']:
         LINKFLAGS += ' -Wl,-defsym,__use_shmem__=1'
         LINKFLAGS += ' -Wl,-defsym,__multicore__=1'
@@ -63,6 +64,12 @@ if GetDepend(['RT_USING_CHERRYUSB']):
         os.path.join(cherryusb_path, 'class', 'hid'),
     ]
 
-group = DefineGroup('Drivers', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES)
+if GetDepend(['BSP_LINKER_SCRIPT_FLEXSPI_NOR']):
+    CPPDEFINES += ['XIP_EXTERNAL_FLASH=1']
+
+if GetDepend(['BSP_LINKER_SCRIPT_FLEXSPI_NOR_HYPERRAM']):
+    CPPDEFINES += ['XIP_EXTERNAL_FLASH=1']    
+
+group = DefineGroup('Drivers', src, depend = [''], CPPPATH = CPPPATH, CPPDEFINES=CPPDEFINES, LINKFLAGS=LINKFLAGS)
 
 Return('group')

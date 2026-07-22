@@ -83,3 +83,4 @@ objs.extend(SConscript(os.path.join(libraries_path_prefix, 'drivers', 'SConscrip
 
 # make a building
 DoBuilding(TARGET, objs)
+
