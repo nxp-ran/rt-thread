@@ -853,6 +853,8 @@ def GenTargetProject(program = None):
         if os.path.isfile('template.uvprojx') and GetOption('target') not in ['mdk4']: # Keil5
             MDK5Project(Env, GetOption('project-name') + '.uvprojx', Projects)
             print("Keil5 project is generating...")
+            if hasattr(rtconfig, 'update_keil_active_target'):
+                rtconfig.update_keil_active_target(GetOption('project-name') + '.uvoptx')
         elif os.path.isfile('template.uvproj') and GetOption('target') not in ['mdk5']: # Keil4
             MDK4Project(Env, GetOption('project-name') + '.uvproj', Projects)
             print("Keil4 project is generating...")
