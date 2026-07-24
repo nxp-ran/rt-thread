@@ -142,7 +142,7 @@ place at address mem: m_interrupts_start    { readonly section .intvec };
 
 place in TEXT_region                        { readonly };
 place in TEXT_region                        { block CORE1_IMAGE_BLOCK };
-place in TEXT_region                        { section .textrw, block QACCESS_CODE };
+place in TEXT_region                        {  block QACCESS_CODE };
 place in DATA_region                        { block RW };
 place in DATA_region                        { block ZI };
 place in DATA_region                        { block QACCESS_DATA };

@@ -21,6 +21,14 @@ config SOC_MIMXRT1189CVM8C_CM33
 
 menu "On-chip Peripheral Drivers"
 
+    config BSP_USING_DWT
+        bool "Enable DWT for cycle counter and us delay"
+        default n
+        help
+            Enable the ARM DWT (Data Watchpoint and Trace) cycle counter.
+            Provides dwt_init(), dwt_get_cycles(), and dwt_delay_us() for
+            high-resolution timing and microsecond-level busy-wait delays.
+
     config BSP_USING_DMA
         bool "Enable DMA"
         default n
@@ -288,5 +296,29 @@ endmenu
   menu "Board extended module Drivers"
 
   endmenu
+
+choice
+    prompt "Linker Script Selection"
+    default BSP_LINKER_SCRIPT_RAM
+    help
+        Select the linker script that matches your target memory configuration.
+
+    config BSP_LINKER_SCRIPT_RAM
+        bool "RAM (internal SRAM only)"
+        help
+            Link the image to run entirely from internal SRAM.
+
+    config BSP_LINKER_SCRIPT_FLEXSPI_NOR
+        bool "FlexSPI NOR Flash (XIP from external NOR flash)"
+        help
+            Link the image to execute-in-place (XIP) from external NOR flash
+            connected via FlexSPI.
+
+    config BSP_LINKER_SCRIPT_FLEXSPI_NOR_HYPERRAM
+        bool "FlexSPI NOR Flash + HyperRAM (XIP + external HyperRAM)"
+        help
+            Link the image to XIP from external NOR flash and use HyperRAM
+            as additional RAM.
+endchoice
 
   endmenu

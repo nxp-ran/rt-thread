@@ -32,15 +32,35 @@ if os.getenv('RTT_EXEC_PATH'):
 BUILD = 'debug'
 # BUILD = 'release'
 
-# Check if HyperRAM is enabled from rtconfig.h
-HYPERRAM_ENABLED = False
-rtconfig_h_path = os.path.join(os.path.dirname(__file__), 'rtconfig.h')
-if os.path.exists(rtconfig_h_path):
-    with open(rtconfig_h_path, 'r') as f:
-        for line in f:
-            if '#define BSP_USING_HYPERRAM' in line and not line.strip().startswith('//'):
-                HYPERRAM_ENABLED = True
+# Read linker script selection from rtconfig.h (set by Kconfig BSP_LINKER_SCRIPT_* choice).
+# Supported types: RAM, FLEXSPI_NOR, FLEXSPI_NOR_HYPERRAM
+# Default to RAM when no match is found.
+_LINKER_SCRIPT_TYPE = 'RAM'
+_rtconfig_h = os.path.join(os.path.dirname(__file__), 'rtconfig.h')
+if os.path.exists(_rtconfig_h):
+    with open(_rtconfig_h, 'r') as _f:
+        for _line in _f:
+            _s = _line.strip()
+            if _s.startswith('//'):
+                continue
+            # Check the most specific name first to avoid false matches.
+            if _s.startswith('#define BSP_LINKER_SCRIPT_FLEXSPI_NOR_HYPERRAM'):
+                _LINKER_SCRIPT_TYPE = 'FLEXSPI_NOR_HYPERRAM'
                 break
+            if _s.startswith('#define BSP_LINKER_SCRIPT_FLEXSPI_NOR'):
+                _LINKER_SCRIPT_TYPE = 'FLEXSPI_NOR'
+                break
+            if _s.startswith('#define BSP_LINKER_SCRIPT_RAM'):
+                _LINKER_SCRIPT_TYPE = 'RAM'
+                break
+
+# Base filename (without extension) for the selected linker script.
+_LINKER_SCRIPT_BASE = {
+    'RAM':                  'MIMXRT1189xxxxx_cm33_ram',
+    'FLEXSPI_NOR':          'MIMXRT1189xxxxx_cm33_flexspi_nor',
+    'FLEXSPI_NOR_HYPERRAM': 'MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram',
+}[_LINKER_SCRIPT_TYPE]
+
 
 if PLATFORM == 'gcc':
     PREFIX = 'arm-none-eabi-'
@@ -56,16 +76,12 @@ if PLATFORM == 'gcc':
     STRIP = PREFIX + 'strip'
 
     DEVICE = ' -mcpu=' + CPU + ' -mthumb -mfpu=fpv5-sp-d16 -mfloat-abi=hard -ffunction-sections -fdata-sections'
-    
+
     CFLAGS = DEVICE + ' -Wall -D__FPU_PRESENT'
     AFLAGS = ' -c' + DEVICE + ' -x assembler-with-cpp -D__START=entry -D__STARTUP_CLEAR_BSS'
-    
-    # Select linker script based on HyperRAM configuration
-    if HYPERRAM_ENABLED:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram.ld'
-    else:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor.ld'
-    
+
+    LINKER_SCRIPT = 'board/linker_scripts/' + _LINKER_SCRIPT_BASE + '.ld'
+
     LFLAGS = DEVICE + ' -specs=nano.specs -specs=nosys.specs -Wl,--gc-sections,-Map=rtthread.map,--print-memory-usage -T ' + LINKER_SCRIPT
 
     CPATH = ''
@@ -77,17 +93,17 @@ if PLATFORM == 'gcc':
     if BUILD == 'debug':
         CFLAGS += ' -g'
         AFLAGS += ' -g'
-        # CFLAGS += ' -O1'        
+        # CFLAGS += ' -O1'
         CFLAGS += ' -O0'
     else:
         CFLAGS += ' -O2 -Os'
 
     POST_ACTION = OBJCPY + ' -O binary $TARGET rtthread.bin\n' + SIZE + ' $TARGET \n'
 
-    # module setting 
+    # module setting
     CXXFLAGS = ' -Woverloaded-virtual -fno-exceptions -fno-rtti '
-    CXXFLAGS += CFLAGS    
-    
+    CXXFLAGS += CFLAGS
+
     M_CFLAGS = CFLAGS + ' -mlong-calls -fPIC '
     M_CXXFLAGS = CXXFLAGS + ' -mlong-calls -fPIC'
     M_LFLAGS = DEVICE + CXXFLAGS + ' -Wl,--gc-sections,-z,max-page-size=0x4' +\
@@ -105,16 +121,12 @@ elif PLATFORM == 'armcc':
     DEVICE = ' --cpu ' + CPU + '.fp.sp'
     CFLAGS = DEVICE + ' --apcs=interwork'
     AFLAGS = DEVICE
-    
-    # Select linker script based on HyperRAM configuration
-    if HYPERRAM_ENABLED:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram.scf'
-    else:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor.scf'
-    
+
+    LINKER_SCRIPT = 'board/linker_scripts/' + _LINKER_SCRIPT_BASE + '.scf'
+
     LFLAGS = DEVICE + ' --libpath "' + EXEC_PATH + '\ARM\ARMCC\lib" --info sizes --info totals --info unused --info veneers --list rtthread.map --scatter "' + LINKER_SCRIPT + '"'
 
-    LFLAGS += ' --keep *.o(.rti_fn.*)   --keep *.o(FSymTab) --keep *.o(VSymTab)' 
+    LFLAGS += ' --keep *.o(.rti_fn.*)   --keep *.o(FSymTab) --keep *.o(VSymTab)'
 
     CFLAGS += ' --diag_suppress=66,1296,186,6314'
     CFLAGS += ' -I' + EXEC_PATH + '/ARM/RV31/INC'
@@ -153,13 +165,10 @@ elif PLATFORM == 'armclang':
     AFLAGS = DEVICE + ' --apcs=interwork '
     AFLAGS += ' -x assembler-with-cpp'
     AFLAGS += ' -Wa,-mimplicit-it=thumb'
-    
-    # Select linker script based on HyperRAM configuration
-    if HYPERRAM_ENABLED:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram'
-    else:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor'
-    
+
+    # armlink --scatter accepts the file with extension.
+    LINKER_SCRIPT = 'board/linker_scripts/' + _LINKER_SCRIPT_BASE + '.scf'
+
     LFLAGS = DEVICE + ' --info sizes --info totals --info unused --info veneers '
     LFLAGS += ' --list rt-thread.map '
     LFLAGS += r' --strict --scatter "' + LINKER_SCRIPT + '" '
@@ -173,7 +182,7 @@ elif PLATFORM == 'armclang':
         AFLAGS += ' -g'
     else:
         CFLAGS += ' -O2'
-        
+
     CXXFLAGS = CFLAGS
     CFLAGS += ' -std=c99'
 
@@ -210,12 +219,8 @@ elif PLATFORM == 'iccarm':
     else:
         CFLAGS += ' -Oh'
 
-    # Select linker script based on HyperRAM configuration
-    if HYPERRAM_ENABLED:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor_hyperram.icf'
-    else:
-        LINKER_SCRIPT = 'board/linker_scripts/MIMXRT1189xxxxx_cm33_flexspi_nor.icf'
-    
+    LINKER_SCRIPT = 'board/linker_scripts/' + _LINKER_SCRIPT_BASE + '.icf'
+
     LFLAGS = ' --config "' + LINKER_SCRIPT + '"'
     LFLAGS += ' --redirect _Printf=_PrintfTiny'
 
