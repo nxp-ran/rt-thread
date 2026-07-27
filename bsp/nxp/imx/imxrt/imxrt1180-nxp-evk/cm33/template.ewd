@@ -44,7 +44,7 @@
                 </option>
                 <option>
                     <name>MemFile</name>
-                    <state></state>
+                    <state>$TOOLKIT_DIR$\config\debugger\NXP\MIMXRT1189xxx8_M33.ddf</state>
                 </option>
                 <option>
                     <name>RunToEnable</name>
@@ -1042,7 +1042,7 @@
                 </option>
                 <option>
                     <name>CCCpuClockEdit</name>
-                    <state></state>
+                    <state>24.0</state>
                 </option>
                 <option>
                     <name>CCSwoClockAuto</name>
@@ -1684,7 +1684,7 @@
                 </option>
                 <option>
                     <name>MemFile</name>
-                    <state></state>
+                    <state>$TOOLKIT_DIR$\config\debugger\NXP\MIMXRT1189xxx8_M33.ddf</state>
                 </option>
                 <option>
                     <name>RunToEnable</name>
@@ -2682,7 +2682,7 @@
                 </option>
                 <option>
                     <name>CCCpuClockEdit</name>
-                    <state></state>
+                    <state>24.0</state>
                 </option>
                 <option>
                     <name>CCSwoClockAuto</name>
@@ -3324,7 +3324,7 @@
                 </option>
                 <option>
                     <name>MemFile</name>
-                    <state></state>
+                    <state>$TOOLKIT_DIR$\config\debugger\NXP\MIMXRT1189xxx8_M33.ddf</state>
                 </option>
                 <option>
                     <name>RunToEnable</name>
@@ -4322,7 +4322,7 @@
                 </option>
                 <option>
                     <name>CCCpuClockEdit</name>
-                    <state></state>
+                    <state>24.0</state>
                 </option>
                 <option>
                     <name>CCSwoClockAuto</name>

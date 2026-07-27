@@ -1135,11 +1135,11 @@
                 </option>
                 <option>
                     <name>Input description</name>
-                    <state></state>
+                    <state>Automatic choice of formatter, without multibyte support.</state>
                 </option>
                 <option>
                     <name>Output description</name>
-                    <state></state>
+                    <state>Automatic choice of formatter, without multibyte support.</state>
                 </option>
                 <option>
                     <name>GOutputBinary</name>
@@ -1147,7 +1147,7 @@
                 </option>
                 <option>
                     <name>OGCoreOrChip</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>GRuntimeLibSelect</name>
@@ -1161,7 +1161,7 @@
                 </option>
                 <option>
                     <name>RTDescription</name>
-                    <state></state>
+                    <state>A compact configuration of the C/C++14 runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
                 </option>
                 <option>
                     <name>OGProductVersion</name>
@@ -1173,7 +1173,7 @@
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
-                    <state>default	None</state>
+                    <state>MIMXRT1189xxx8_M33	NXP MIMXRT1189xxx8_M33</state>
                 </option>
                 <option>
                     <name>GenLowLevelInterface</name>
@@ -1181,7 +1181,7 @@
                 </option>
                 <option>
                     <name>GEndianModeBE</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OGBufferedTerminalOutput</name>
@@ -1193,12 +1193,12 @@
                 </option>
                 <option>
                     <name>RTConfigPath2</name>
-                    <state></state>
+                    <state>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</state>
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>OGUseCmsis</name>
@@ -1215,21 +1215,21 @@
                 <option>
                     <name>CoreVariant</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
-                    <state>default	None</state>
+                    <state>MIMXRT1189xxx8_M33	NXP MIMXRT1189xxx8_M33</state>
                 </option>
                 <option>
                     <name>FPU2</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>6</state>
                 </option>
                 <option>
                     <name>NrRegs</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>NEON</name>
@@ -1238,7 +1238,7 @@
                 <option>
                     <name>GFPUCoreSlave2</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>OGCMSISPackSelectDevice</name>
@@ -1313,7 +1313,7 @@
                 <option>
                     <name>OG_32_64DeviceCoreSlave</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>GOutputSo</name>
@@ -1715,7 +1715,7 @@
                 </option>
                 <option>
                     <name>AOutputFile</name>
-                    <state></state>
+                    <state>$FILE_BNAME$.o</state>
                 </option>
                 <option>
                     <name>ALimitErrorsCheck</name>
@@ -1773,7 +1773,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state></state>
+                    <state>template.srec</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -2234,11 +2234,11 @@
                 </option>
                 <option>
                     <name>Input description</name>
-                    <state></state>
+                    <state>Automatic choice of formatter, without multibyte support.</state>
                 </option>
                 <option>
                     <name>Output description</name>
-                    <state></state>
+                    <state>Automatic choice of formatter, without multibyte support.</state>
                 </option>
                 <option>
                     <name>GOutputBinary</name>
@@ -2246,7 +2246,7 @@
                 </option>
                 <option>
                     <name>OGCoreOrChip</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>GRuntimeLibSelect</name>
@@ -2260,7 +2260,7 @@
                 </option>
                 <option>
                     <name>RTDescription</name>
-                    <state></state>
+                    <state>A compact configuration of the C/C++14 runtime library. No locale interface, C locale, no file descriptor support, no multibytes in printf and scanf, and no hex floats in strtod.</state>
                 </option>
                 <option>
                     <name>OGProductVersion</name>
@@ -2272,7 +2272,7 @@
                 </option>
                 <option>
                     <name>OGChipSelectEditMenu</name>
-                    <state>default	None</state>
+                    <state>MIMXRT1189xxx8_M33	NXP MIMXRT1189xxx8_M33</state>
                 </option>
                 <option>
                     <name>GenLowLevelInterface</name>
@@ -2280,7 +2280,7 @@
                 </option>
                 <option>
                     <name>GEndianModeBE</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OGBufferedTerminalOutput</name>
@@ -2292,12 +2292,12 @@
                 </option>
                 <option>
                     <name>RTConfigPath2</name>
-                    <state></state>
+                    <state>$TOOLKIT_DIR$\inc\c\DLib_Config_Normal.h</state>
                 </option>
                 <option>
                     <name>GBECoreSlave</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>OGUseCmsis</name>
@@ -2314,21 +2314,21 @@
                 <option>
                     <name>CoreVariant</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>GFPUDeviceSlave</name>
-                    <state>default	None</state>
+                    <state>MIMXRT1189xxx8_M33	NXP MIMXRT1189xxx8_M33</state>
                 </option>
                 <option>
                     <name>FPU2</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>6</state>
                 </option>
                 <option>
                     <name>NrRegs</name>
                     <version>0</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>NEON</name>
@@ -2337,7 +2337,7 @@
                 <option>
                     <name>GFPUCoreSlave2</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>OGCMSISPackSelectDevice</name>
@@ -2412,7 +2412,7 @@
                 <option>
                     <name>OG_32_64DeviceCoreSlave</name>
                     <version>34</version>
-                    <state>38</state>
+                    <state>61</state>
                 </option>
                 <option>
                     <name>GOutputSo</name>
@@ -2814,7 +2814,7 @@
                 </option>
                 <option>
                     <name>AOutputFile</name>
-                    <state></state>
+                    <state>$FILE_BNAME$.o</state>
                 </option>
                 <option>
                     <name>ALimitErrorsCheck</name>
@@ -2872,7 +2872,7 @@
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state></state>
+                    <state>template.srec</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
