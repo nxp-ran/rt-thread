@@ -1,0 +1,405 @@
+T4B40 000:247.446   SEGGER J-Link V9.56 Log File
+T4B40 000:248.642   DLL Compiled: Jul  1 2026 16:46:42
+T4B40 000:248.661   Logging started @ 2026-07-27 09:07
+T4B40 000:248.680   Process: C:\Users\nxg01727\AppData\Local\Keil_v5\UV4\UV4.exe
+T4B40 000:249.149 - 248.697ms 
+T4B40 000:249.352 JLINK_SetWarnOutHandler(...)
+T4B40 000:249.403 - 0.219ms 
+T4B40 000:249.438 JLINK_OpenEx(...)
+T4B40 000:257.918   Firmware: J-Link V10 compiled Jan 30 2023 11:28:07
+T4B40 000:259.166   Firmware: J-Link V10 compiled Jan 30 2023 11:28:07
+T4B40 000:260.127   Decompressing FW timestamp took 236 us
+T4B40 000:262.622   Hardware: V10.10
+T4B40 000:262.707   S/N: 600109563
+T4B40 000:262.732   OEM: SEGGER
+T4B40 000:262.758   Feature(s): RDI, FlashBP, FlashDL, JFlash, GDB
+T4B40 000:266.160   Bootloader: (FW returned invalid version)
+T4B40 000:267.917   TELNET listener socket opened on port 19021
+T4B40 000:268.545   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T4B40 000:269.068   WEBSRV Webserver running on local port 19080
+T4B40 000:269.325   Looking for J-Link GUI Server exe at: C:\Users\nxg01727\AppData\Local\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T4B40 000:269.566   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink_V956\JLinkGUIServer.exe
+T4B40 000:270.175   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink_V956\JLinkGUIServer.exe
+T4B40 000:736.555   J-Link GUI Server info: "J-Link GUI server V9.56 "
+T4B40 000:742.925 - 493.023ms returns "O.K."
+T4B40 000:743.026 JLINK_GetEmuCaps()
+T4B40 000:743.049 - 0.020ms returns 0xB9FF7BBF
+T4B40 000:743.072 JLINK_TIF_GetAvailable(...)
+T4B40 000:743.305 - 0.234ms 
+T4B40 000:743.362 JLINK_SetErrorOutHandler(...)
+T4B40 000:743.381 - 0.018ms 
+T4B40 000:743.773 JLINK_ExecCommand("ProjectFile = "C:\0.RanChen\2.Projects\RT-Thread\rt-thread_pr\rt-thread\bsp\nxp\imx\imxrt\imxrt1180-nxp-evk\cm33\JLinkSettings.ini"", ...). 
+T4B40 000:784.173   XML file found at: C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\iMXRT2660.xml
+T4B40 000:785.403   C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\iMXRT2660.xml evaluated successfully.
+T4B40 000:785.454     Device entry created:  MIMXRT2660
+T4B40 000:785.474       ChipInfo:
+T4B40 000:785.499         Vendor:          NXP
+T4B40 000:785.524         Name:            MIMXRT2660
+T4B40 000:785.550         WorkRAMAddr:     0x20000000
+T4B40 000:785.575         WorkRAMSize:     0x00080000
+T4B40 000:785.602         Core:            JLINK_CORE_CORTEX_M85
+T4B40 000:785.742         Script:          C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\NXP_iMXRT2660_CortexM85.JLinkScript
+T4B40 000:786.001     Device entry created:  MIMXRT2660_NPU
+T4B40 000:786.034       ChipInfo:
+T4B40 000:786.059         Vendor:          NXP
+T4B40 000:786.084         Name:            MIMXRT2660_NPU
+T4B40 000:786.110         Core:            JLINK_CORE_RISC_V
+T4B40 000:786.212         Script:          C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\Devices\NXP\iMXRT2660\RT2660_NPU_RISV.JLinkScript
+T4B40 000:787.531   Ref file found at: C:\Users\nxg01727\AppData\Local\Keil_v5\ARM\Segger\JLinkDevices.ref
+T4B40 000:787.728   REF file references invalid XML file: C:\Program Files\SEGGER\JLink_V956\JLinkDevices.xml
+T4B40 000:789.172   Flash bank @ 0x28000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:789.221     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:797.641   Flash bank @ 0x38000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:797.719     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:805.001   Flash bank @ 0x04000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:805.080     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:809.426   Flash bank @ 0x14000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:809.532     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:813.820   Device "MIMXRT1189XXX8_M33" selected.
+T4B40 000:815.787 - 72.014ms returns 0x00
+T4B40 000:815.889 JLINK_ExecCommand("Device = MIMXRT1189CVM8C:cm33", ...). 
+T4B40 000:819.870   Flash bank @ 0x28000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:819.910     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:829.586   Flash bank @ 0x38000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:829.732     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:836.589   Flash bank @ 0x04000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:836.652     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:841.239   Flash bank @ 0x14000000: SFL: Parsing sectorization info from ELF file
+T4B40 000:841.357     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T4B40 000:845.565   Device "MIMXRT1189XXX8_M33" selected.
+T4B40 000:847.526 - 31.635ms returns 0x00
+T4B40 000:847.972   ERROR: Unknown command
+T4B40 000:848.049 JLINK_GetHardwareVersion()
+T4B40 000:848.072 - 0.019ms returns 101000
+T4B40 000:848.101 JLINK_GetDLLVersion()
+T4B40 000:848.119 - 0.017ms returns 95600
+T4B40 000:848.183 JLINK_GetOEMString(...)
+T4B40 000:848.204 JLINK_GetFirmwareString(...)
+T4B40 000:848.221 - 0.016ms 
+T4B40 000:848.245 JLINK_GetDLLVersion()
+T4B40 000:848.262 - 0.016ms returns 95600
+T4B40 000:848.280 JLINK_GetCompileDateTime()
+T4B40 000:848.296 - 0.016ms 
+T4B40 000:848.315 JLINK_GetFirmwareString(...)
+T4B40 000:848.332 - 0.016ms 
+T4B40 000:848.350 JLINK_GetHardwareVersion()
+T4B40 000:848.366 - 0.016ms returns 101000
+T4B40 000:848.384 JLINK_GetSN()
+T4B40 000:848.400 - 0.016ms returns 600109563
+T4B40 000:848.418 JLINK_GetOEMString(...)
+T4B40 000:848.440 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T4B40 000:849.278 - 0.836ms returns 0x00
+T4B40 000:849.326 JLINK_HasError()
+T4B40 000:849.499 JLINK_SetSpeed(5000)
+T4B40 000:849.625 - 0.276ms 
+T4B40 000:850.106 JLINK_HasError()
+T4B40 000:850.143 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
+T4B40 000:850.162 - 0.018ms returns JLINKARM_RESET_TYPE_NORMAL
+T4B40 000:850.184 JLINK_Reset()
+T4B40 000:875.535   ConfigTargetSettings() start
+T4B40 000:875.640    J-Link Script File: Executing ConfigTargetSettings()
+T4B40 000:876.165   ConfigTargetSettings() end - Took 517us
+T4B40 000:876.273   InitTarget() start
+T4B40 000:876.324    J-Link Script File: Executing InitTarget()
+T4B40 000:877.137   ***************************************************
+T4B40 000:877.190   Current core is CM33
+T4B40 000:877.215   ***************************************************
+T4B40 000:878.051   SI_VER = 0x00000002
+T4B40 000:878.085   TRAP   = 0x100025D4
+T4B40 000:878.111   InitTarget() end - Took 1.78ms
+T4B40 000:878.700   Found SW-DP with ID 0x5BA02477
+T4B40 000:880.625   DPIDR: 0x5BA02477
+T4B40 000:880.664   CoreSight SoC-400 or earlier
+T4B40 000:880.691   AP map detection skipped. Manually configured AP map found.
+T4B40 000:880.720   AP[0]: AHB-AP (IDR: Not set, ADDR: 0x00000000)
+T4B40 000:880.745   AP[1]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T4B40 000:880.770   AP[2]: AHB-AP (IDR: Not set, ADDR: 0x00000000)
+T4B40 000:880.795   AP[3]: AHB-AP (IDR: Not set, ADDR: 0x00000000)
+T4B40 000:880.820   AP[4]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T4B40 000:880.845   AP[5]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T4B40 000:880.869   AP[6]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T4B40 000:881.351   AP[3]: Core found
+T4B40 000:881.380   AP[3]: AHB-AP ROM base: 0xE00FF000
+T4B40 000:881.675   CPUID register: 0x411FD210. Implementer code: 0x41 (ARM)
+T4B40 000:881.703   Feature set: Mainline
+T4B40 000:882.012   Cache: No cache
+T4B40 000:882.055   Found Cortex-M33 r1p0, Little endian.
+T4B40 000:882.407   -- Max. mem block: 0x00004598
+T4B40 000:883.041   
+  ***** Warning: 
+T4B40 000:883.070   Cortex-M (ARMv8-M and later): The connected J-Link (S/N 600109563) uses an old firmware module that does not handle I/D-cache correctly. Proper debugging functionality cannot be guaranteed if cache is enabled
+T4B40 000:883.106   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T4B40 000:883.391   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T4B40 000:883.642   CPU_ReadMem(4 bytes @ 0xE0002000)
+T4B40 000:883.887   FPUnit: 8 code (BP) slots and 0 literal slots
+T4B40 000:883.916   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T4B40 000:884.211   CPU_WriteMem(4 bytes @ 0xE000EDFC)
+T4B40 000:884.574   CPU_ReadMem(4 bytes @ 0xE0001000)
+T4B40 000:884.945   CPU_ReadMem(4 bytes @ 0xE0001000)
+T4B40 000:885.291   CPU_ReadMem(4 bytes @ 0xE0001028)
+T4B40 000:885.613   CPU_ReadMem(4 bytes @ 0xE0001038)
+T4B40 000:886.063   CPU_ReadMem(4 bytes @ 0xE0001048)
+T4B40 000:886.351   CPU_ReadMem(4 bytes @ 0xE0001058)
+T4B40 000:886.600   CPU_WriteMem(4 bytes @ 0xE0001000)
+T4B40 000:886.894   CPU_ReadMem(4 bytes @ 0xE000ED88)
+T4B40 000:887.125   CPU_WriteMem(4 bytes @ 0xE000ED88)
+T4B40 000:887.376   CPU_ReadMem(4 bytes @ 0xE000ED88)
+T4B40 000:887.651   CPU_WriteMem(4 bytes @ 0xE000ED88)
+T4B40 000:887.874   CPU_ReadMem(4 bytes @ 0xE000EFB8)
+T4B40 000:888.105   Security extension: implemented
+T4B40 000:888.140   Secure debug: enabled
+T4B40 000:888.165   CoreSight components:
+T4B40 000:888.190   ROMTbl[0] @ E00FF000
+T4B40 000:888.215   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T4B40 000:888.661   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T4B40 000:888.997   CPU_ReadMem(4 bytes @ 0xE000EFBC)
+T4B40 000:889.304   CPU_ReadMem(4 bytes @ 0xE000EFCC)
+T4B40 000:889.601   [0][0]: E000E000 CID B105900D PID 000BBD21 DEVARCH 47702A04 DEVTYPE 00 Cortex-M33
+T4B40 000:889.636   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T4B40 000:890.041   CPU_ReadMem(4 bytes @ 0xE0001FBC)
+T4B40 000:890.416   CPU_ReadMem(4 bytes @ 0xE0001FCC)
+T4B40 000:890.805   [0][1]: E0001000 CID B105900D PID 000BBD21 DEVARCH 47701A02 DEVTYPE 00 DWT
+T4B40 000:890.837   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T4B40 000:891.271   CPU_ReadMem(4 bytes @ 0xE0002FBC)
+T4B40 000:891.600   CPU_ReadMem(4 bytes @ 0xE0002FCC)
+T4B40 000:891.905   [0][2]: E0002000 CID B105900D PID 000BBD21 DEVARCH 47701A03 DEVTYPE 00 FPB
+T4B40 000:891.933   CPU_ReadMem(32 bytes @ 0xE0000FE0)
+T4B40 000:892.342   CPU_ReadMem(4 bytes @ 0xE0000FBC)
+T4B40 000:892.641   CPU_ReadMem(4 bytes @ 0xE0000FCC)
+T4B40 000:892.979   [0][3]: E0000000 CID B105900D PID 000BBD21 DEVARCH 47701A01 DEVTYPE 43 ITM
+T4B40 000:893.008   CPU_ReadMem(32 bytes @ 0xE0041FE0)
+T4B40 000:893.437   CPU_ReadMem(4 bytes @ 0xE0041FBC)
+T4B40 000:893.773   CPU_ReadMem(4 bytes @ 0xE0041FCC)
+T4B40 000:894.045   [0][5]: E0041000 CID B105900D PID 002BBD21 DEVARCH 47724A13 DEVTYPE 13 ETM
+T4B40 000:894.073   CPU_ReadMem(32 bytes @ 0xE0042FE0)
+T4B40 000:894.454   CPU_ReadMem(4 bytes @ 0xE0042FBC)
+T4B40 000:894.778   CPU_ReadMem(4 bytes @ 0xE0042FCC)
+T4B40 000:895.079   [0][6]: E0042000 CID B105900D PID 000BBD21 DEVARCH 47701A14 DEVTYPE 14 CSS600-CTI
+T4B40 000:895.108   SetupTarget() start
+T4B40 000:895.133    J-Link Script File: Executing SetupTarget()
+T4B40 000:895.153   SetupTarget() end - Took 19us
+T4B40 000:895.210   ResetTarget() start
+T4B40 000:895.236    J-Link Script File: Executing ResetTarget()
+T4B40 000:908.867   CPU_ReadMem(4 bytes @ 0x44460018)
+T4B40 000:909.314   CPU_ReadMem(4 bytes @ 0x44460004)
+T4B40 000:909.707   Enable system reset via CM33 core reset
+T4B40 000:909.751   CPU_WriteMem(4 bytes @ 0x44460018)
+T4B40 000:910.146   Set CM33 watch point
+T4B40 000:910.251   CPU_ReadMem(4 bytes @ 0xE0001020)
+T4B40 000:910.559   CPU_ReadMem(4 bytes @ 0xE0001028)
+T4B40 000:910.958   CPU_WriteMem(4 bytes @ 0xE0001020)
+T4B40 000:911.365   CPU_WriteMem(4 bytes @ 0xE0001028)
+T4B40 000:911.748   CPU_ReadMem(4 bytes @ 0x44460050)
+T4B40 000:912.103   CPU_WriteMem(4 bytes @ 0x44460050)
+T4B40 000:912.527   Execute SYSRESETREQ via AIRCR
+T4B40 000:912.567   CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T4B40 001:014.556   CPU_ReadMem(4 bytes @ 0xE0001028)
+T4B40 001:015.129   restore CM33 watch point
+T4B40 001:015.184   CPU_WriteMem(4 bytes @ 0xE0001020)
+T4B40 001:015.563   CPU_WriteMem(4 bytes @ 0xE0001028)
+T4B40 001:015.941   ResetTarget() end - Took 120ms
+T4B40 001:015.978   Device specific reset executed.
+T4B40 001:018.687   AfterResetTarget() start
+T4B40 001:018.832    J-Link Script File: Executing AfterResetTarget()
+T4B40 001:018.893   ***************************************************
+T4B40 001:018.975   Clear NVIC
+T4B40 001:019.011   ***************************************************
+T4B40 001:019.066   CPU_WriteMem(64 bytes @ 0xE000E180)
+T4B40 001:019.713   CPU_WriteMem(64 bytes @ 0xE000E280)
+T4B40 001:020.329   ***************************************************
+T4B40 001:020.391   Init Flash
+T4B40 001:020.422   CPU_ReadMem(4 bytes @ 0x425E0000)
+T4B40 001:020.819   CPU_ReadMem(4 bytes @ 0x425E0000)
+T4B40 001:021.254   CPU_WriteMem(4 bytes @ 0x42A1023C)
+T4B40 001:021.659   CPU_WriteMem(4 bytes @ 0x42A10544)
+T4B40 001:022.097   CPU_WriteMem(4 bytes @ 0x42A10240)
+T4B40 001:022.572   CPU_WriteMem(4 bytes @ 0x42A10244)
+T4B40 001:023.034   CPU_WriteMem(4 bytes @ 0x42A10248)
+T4B40 001:023.480   CPU_WriteMem(4 bytes @ 0x42A1024C)
+T4B40 001:023.871   CPU_WriteMem(4 bytes @ 0x42A10250)
+T4B40 001:024.269   CPU_WriteMem(4 bytes @ 0x42A10254)
+T4B40 001:025.710   CPU_WriteMem(4 bytes @ 0x54450A80)
+T4B40 001:026.163   CPU_ReadMem(4 bytes @ 0x425E0000)
+T4B40 001:026.562   CPU_WriteMem(4 bytes @ 0x425E0000)
+T4B40 001:026.941   CPU_WriteMem(4 bytes @ 0x425E0000)
+T4B40 001:027.313   CPU_WriteMem(4 bytes @ 0x425E0008)
+T4B40 001:027.757   CPU_WriteMem(4 bytes @ 0x425E000C)
+T4B40 001:028.159   CPU_WriteMem(4 bytes @ 0x425E0060)
+T4B40 001:028.544   CPU_WriteMem(4 bytes @ 0x425E0094)
+T4B40 001:028.902   CPU_WriteMem(4 bytes @ 0x425E00B8)
+T4B40 001:029.310   CPU_WriteMem(4 bytes @ 0x425E0018)
+T4B40 001:029.645   CPU_WriteMem(4 bytes @ 0x425E001C)
+T4B40 001:030.127   CPU_WriteMem(4 bytes @ 0x425E0200)
+T4B40 001:030.520   CPU_WriteMem(4 bytes @ 0x425E0204)
+T4B40 001:030.945   CPU_WriteMem(4 bytes @ 0x425E0208)
+T4B40 001:031.397   CPU_WriteMem(4 bytes @ 0x425E020C)
+T4B40 001:031.779   CPU_WriteMem(4 bytes @ 0x425E0210)
+T4B40 001:032.144   CPU_WriteMem(4 bytes @ 0x425E0214)
+T4B40 001:032.498   CPU_WriteMem(4 bytes @ 0x425E0218)
+T4B40 001:032.893   CPU_WriteMem(4 bytes @ 0x425E021C)
+T4B40 001:033.371   CPU_WriteMem(4 bytes @ 0x425E0220)
+T4B40 001:033.776   CPU_WriteMem(4 bytes @ 0x425E0224)
+T4B40 001:034.227   CPU_WriteMem(4 bytes @ 0x425E0228)
+T4B40 001:035.420   CPU_WriteMem(4 bytes @ 0x425E022C)
+T4B40 001:035.757   CPU_WriteMem(4 bytes @ 0x425E0230)
+T4B40 001:036.181   CPU_WriteMem(4 bytes @ 0x425E0234)
+T4B40 001:036.651   CPU_WriteMem(4 bytes @ 0x425E0238)
+T4B40 001:037.005   CPU_WriteMem(4 bytes @ 0x425E023C)
+T4B40 001:037.394   CPU_WriteMem(4 bytes @ 0x425E0240)
+T4B40 001:037.774   CPU_WriteMem(4 bytes @ 0x425E0244)
+T4B40 001:038.152   CPU_WriteMem(4 bytes @ 0x425E0248)
+T4B40 001:038.492   CPU_WriteMem(4 bytes @ 0x425E024C)
+T4B40 001:038.893   CPU_WriteMem(4 bytes @ 0x425E0250)
+T4B40 001:039.272   CPU_WriteMem(4 bytes @ 0x425E0254)
+T4B40 001:039.570   CPU_WriteMem(4 bytes @ 0x425E0258)
+T4B40 001:039.893   CPU_WriteMem(4 bytes @ 0x425E025C)
+T4B40 001:040.239   CPU_WriteMem(4 bytes @ 0x425E0260)
+T4B40 001:040.642   CPU_WriteMem(4 bytes @ 0x425E0264)
+T4B40 001:040.996   CPU_WriteMem(4 bytes @ 0x425E0268)
+T4B40 001:041.391   CPU_WriteMem(4 bytes @ 0x425E026C)
+T4B40 001:041.796   CPU_WriteMem(4 bytes @ 0x425E0270)
+T4B40 001:042.183   CPU_WriteMem(4 bytes @ 0x425E0274)
+T4B40 001:042.493   CPU_WriteMem(4 bytes @ 0x425E0278)
+T4B40 001:042.807   CPU_WriteMem(4 bytes @ 0x425E027C)
+T4B40 001:043.100   CPU_WriteMem(4 bytes @ 0x425E0018)
+T4B40 001:043.476   CPU_WriteMem(4 bytes @ 0x425E001C)
+T4B40 001:043.781   ***************************************************
+T4B40 001:043.823   ***************************************************
+T4B40 001:043.848   Init HyperRAM
+T4B40 001:043.877   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:044.185   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:044.532   CPU_WriteMem(4 bytes @ 0x42A10088)
+T4B40 001:044.901   CPU_WriteMem(4 bytes @ 0x42A1008C)
+T4B40 001:045.224   CPU_WriteMem(4 bytes @ 0x42A10090)
+T4B40 001:045.523   CPU_WriteMem(4 bytes @ 0x42A10094)
+T4B40 001:045.806   CPU_WriteMem(4 bytes @ 0x42A1009C)
+T4B40 001:046.105   CPU_WriteMem(4 bytes @ 0x42A100A0)
+T4B40 001:046.399   CPU_WriteMem(4 bytes @ 0x42A100A4)
+T4B40 001:046.730   CPU_WriteMem(4 bytes @ 0x42A100A8)
+T4B40 001:047.065   CPU_WriteMem(4 bytes @ 0x42A100AC)
+T4B40 001:047.357   CPU_WriteMem(4 bytes @ 0x42A100B0)
+T4B40 001:047.748   CPU_WriteMem(4 bytes @ 0x42A100B4)
+T4B40 001:048.071   CPU_WriteMem(4 bytes @ 0x42A10594)
+T4B40 001:048.358   CPU_WriteMem(4 bytes @ 0x42A10590)
+T4B40 001:048.738   CPU_WriteMem(4 bytes @ 0x42A1058C)
+T4B40 001:049.101   CPU_WriteMem(4 bytes @ 0x42A10588)
+T4B40 001:049.536   CPU_WriteMem(4 bytes @ 0x42A10578)
+T4B40 001:049.950   CPU_WriteMem(4 bytes @ 0x42A1057C)
+T4B40 001:050.432   CPU_WriteMem(4 bytes @ 0x42A10580)
+T4B40 001:050.811   CPU_WriteMem(4 bytes @ 0x42A10584)
+T4B40 001:051.229   CPU_WriteMem(4 bytes @ 0x42A10570)
+T4B40 001:051.677   CPU_WriteMem(4 bytes @ 0x42A10598)
+T4B40 001:052.089   CPU_WriteMem(4 bytes @ 0x42A102D0)
+T4B40 001:052.459   CPU_WriteMem(4 bytes @ 0x42A102D4)
+T4B40 001:052.824   CPU_WriteMem(4 bytes @ 0x42A102D8)
+T4B40 001:053.191   CPU_WriteMem(4 bytes @ 0x42A102DC)
+T4B40 001:053.566   CPU_WriteMem(4 bytes @ 0x42A102E4)
+T4B40 001:053.922   CPU_WriteMem(4 bytes @ 0x42A102E8)
+T4B40 001:054.250   CPU_WriteMem(4 bytes @ 0x42A102EC)
+T4B40 001:054.643   CPU_WriteMem(4 bytes @ 0x42A102F0)
+T4B40 001:054.996   CPU_WriteMem(4 bytes @ 0x42A102F4)
+T4B40 001:055.365   CPU_WriteMem(4 bytes @ 0x42A102F8)
+T4B40 001:055.776   CPU_WriteMem(4 bytes @ 0x42A102FC)
+T4B40 001:057.402   CPU_WriteMem(4 bytes @ 0x44450B00)
+T4B40 001:057.854   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:058.318   CPU_WriteMem(4 bytes @ 0x445E0000)
+T4B40 001:058.803   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:059.290   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:059.749   CPU_WriteMem(4 bytes @ 0x445E0000)
+T4B40 001:060.180   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:060.627   CPU_WriteMem(4 bytes @ 0x445E0000)
+T4B40 001:061.064   CPU_WriteMem(4 bytes @ 0x445E0004)
+T4B40 001:061.493   CPU_WriteMem(4 bytes @ 0x445E0008)
+T4B40 001:061.959   CPU_WriteMem(4 bytes @ 0x445E000C)
+T4B40 001:062.344   CPU_WriteMem(4 bytes @ 0x445E0020)
+T4B40 001:062.715   CPU_WriteMem(4 bytes @ 0x445E0024)
+T4B40 001:063.121   CPU_WriteMem(4 bytes @ 0x445E0028)
+T4B40 001:063.461   CPU_WriteMem(4 bytes @ 0x445E002C)
+T4B40 001:063.896   CPU_WriteMem(4 bytes @ 0x445E0030)
+T4B40 001:064.308   CPU_WriteMem(4 bytes @ 0x445E0034)
+T4B40 001:064.766   CPU_WriteMem(4 bytes @ 0x445E0038)
+T4B40 001:065.204   CPU_WriteMem(4 bytes @ 0x445E003C)
+T4B40 001:065.715   CPU_WriteMem(4 bytes @ 0x445E00B8)
+T4B40 001:066.155   CPU_WriteMem(4 bytes @ 0x445E00BC)
+T4B40 001:066.583   CPU_WriteMem(4 bytes @ 0x445E0060)
+T4B40 001:067.058   CPU_WriteMem(4 bytes @ 0x445E0064)
+T4B40 001:067.532   CPU_WriteMem(4 bytes @ 0x445E0068)
+T4B40 001:067.993   CPU_WriteMem(4 bytes @ 0x445E006C)
+T4B40 001:068.475   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:068.956   CPU_WriteMem(4 bytes @ 0x445E0060)
+T4B40 001:069.404   CPU_WriteMem(4 bytes @ 0x445E0070)
+T4B40 001:069.887   CPU_WriteMem(4 bytes @ 0x445E0080)
+T4B40 001:070.317   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:070.790   CPU_WriteMem(4 bytes @ 0x445E00C0)
+T4B40 001:071.278   CPU_WriteMem(4 bytes @ 0x445E0000)
+T4B40 001:071.724   CPU_ReadMem(4 bytes @ 0x445E00E8)
+T4B40 001:073.917   CPU_WriteMem(4 bytes @ 0x445E0000)
+T4B40 001:074.452   CPU_WriteMem(4 bytes @ 0x445E0094)
+T4B40 001:074.877   CPU_WriteMem(4 bytes @ 0x445E0094)
+T4B40 001:075.325   CPU_WriteMem(4 bytes @ 0x445E0000)
+T4B40 001:075.767   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:076.265   CPU_ReadMem(4 bytes @ 0x445E00E0)
+T4B40 001:076.709   CPU_WriteMem(4 bytes @ 0x445E0018)
+T4B40 001:077.162   CPU_WriteMem(4 bytes @ 0x445E001C)
+T4B40 001:077.658   CPU_WriteMem(4 bytes @ 0x445E0200)
+T4B40 001:078.000   CPU_WriteMem(4 bytes @ 0x445E0204)
+T4B40 001:078.330   CPU_WriteMem(4 bytes @ 0x445E0208)
+T4B40 001:078.811   CPU_WriteMem(4 bytes @ 0x445E020C)
+T4B40 001:079.674   CPU_WriteMem(4 bytes @ 0x445E0210)
+T4B40 001:080.063   CPU_WriteMem(4 bytes @ 0x445E0214)
+T4B40 001:080.533   CPU_WriteMem(4 bytes @ 0x445E0218)
+T4B40 001:080.988   CPU_WriteMem(4 bytes @ 0x445E021C)
+T4B40 001:081.414   CPU_WriteMem(4 bytes @ 0x445E0220)
+T4B40 001:081.812   CPU_WriteMem(4 bytes @ 0x445E0224)
+T4B40 001:082.226   CPU_WriteMem(4 bytes @ 0x445E0228)
+T4B40 001:082.625   CPU_WriteMem(4 bytes @ 0x445E022C)
+T4B40 001:083.003   CPU_WriteMem(4 bytes @ 0x445E0230)
+T4B40 001:083.438   CPU_WriteMem(4 bytes @ 0x445E0234)
+T4B40 001:083.875   CPU_WriteMem(4 bytes @ 0x445E0238)
+T4B40 001:084.310   CPU_WriteMem(4 bytes @ 0x445E023C)
+T4B40 001:084.791   CPU_WriteMem(4 bytes @ 0x445E0240)
+T4B40 001:085.251   CPU_WriteMem(4 bytes @ 0x445E0244)
+T4B40 001:085.778   CPU_WriteMem(4 bytes @ 0x445E0248)
+T4B40 001:086.213   CPU_WriteMem(4 bytes @ 0x445E024C)
+T4B40 001:086.618   CPU_WriteMem(4 bytes @ 0x445E0018)
+T4B40 001:086.993   CPU_WriteMem(4 bytes @ 0x445E001C)
+T4B40 001:087.413   CPU_WriteMem(4 bytes @ 0x445E00A0)
+T4B40 001:087.792   CPU_WriteMem(4 bytes @ 0x445E00A4)
+T4B40 001:088.235   CPU_WriteMem(4 bytes @ 0x445E00BC)
+T4B40 001:088.658   CPU_WriteMem(4 bytes @ 0x445E0180)
+T4B40 001:089.072   CPU_WriteMem(4 bytes @ 0x445E0014)
+T4B40 001:089.441   CPU_WriteMem(4 bytes @ 0x445E00B0)
+T4B40 001:089.805   CPU_ReadMem(4 bytes @ 0x445E0014)
+T4B40 001:090.070   CPU_WriteMem(4 bytes @ 0x445E0014)
+T4B40 001:090.455   CPU_WriteMem(4 bytes @ 0x445E00A0)
+T4B40 001:090.880   CPU_WriteMem(4 bytes @ 0x445E00A4)
+T4B40 001:091.379   CPU_WriteMem(4 bytes @ 0x445E00BC)
+T4B40 001:091.776   CPU_WriteMem(4 bytes @ 0x445E0180)
+T4B40 001:092.179   CPU_WriteMem(4 bytes @ 0x445E0014)
+T4B40 001:092.709   CPU_WriteMem(4 bytes @ 0x445E00B0)
+T4B40 001:093.323   CPU_ReadMem(4 bytes @ 0x445E0014)
+T4B40 001:093.807   CPU_WriteMem(4 bytes @ 0x445E0014)
+T4B40 001:094.290   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:094.745   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:095.235   CPU_WriteMem(4 bytes @ 0x445E0000)
+T4B40 001:095.747   CPU_ReadMem(4 bytes @ 0x445E0000)
+T4B40 001:096.180   ***************************************************
+T4B40 001:096.247   AfterResetTarget() end - Took 77.4ms
+T4B40 001:096.275   CPU_WriteMem(4 bytes @ 0xE0002000)
+T4B40 001:096.587   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T4B40 001:097.029   CPU_ReadMem(4 bytes @ 0xE0001000)
+T4B40 001:097.419   CPU_ReadMem(4 bytes @ 0xE000EE08)
+T4B40 001:097.778 - 247.593ms 
+T4B40 001:097.830 JLINK_GetId()
+T4B40 001:098.130 - 0.299ms returns 0x5BA02477
+T4B40 001:113.361 JLINK_GetFirmwareString(...)
+T4B40 001:113.431 - 0.069ms 
+T4B40 003:076.008 JLINK_Close()
+T4B40 003:076.676   BeforeGo() start
+T4B40 003:076.734    J-Link Script File: Executing BeforeGo()
+T4B40 003:079.278   BeforeGo() end - Took 2.53ms
+T4B40 003:079.486   CPU_ReadMem(4 bytes @ 0xE0001000)
+T4B40 003:079.934   CPU_WriteMem(4 bytes @ 0xE0001004)
+T4B40 003:105.361 - 29.343ms
+T4B40 003:105.840   
+T4B40 003:105.872   Closed

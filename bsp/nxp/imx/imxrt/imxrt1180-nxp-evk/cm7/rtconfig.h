@@ -142,7 +142,20 @@
 
 /* DFS: device virtual file system */
 
+#define RT_USING_DFS
+#define DFS_USING_POSIX
+#define DFS_USING_WORKDIR
+#define DFS_FD_MAX 16
+#define RT_USING_DFS_V1
+#define DFS_FILESYSTEMS_MAX 4
+#define DFS_FILESYSTEM_TYPES_MAX 4
+#define RT_USING_DFS_DEVFS
 /* end of DFS: device virtual file system */
+#define RT_USING_FAL
+#define FAL_USING_DEBUG
+#define FAL_PART_HAS_TABLE_CFG
+#define FAL_DEV_NAME_MAX 24
+#define FAL_DEV_BLK_MAX 6
 
 /* Device Drivers */
 
@@ -284,6 +297,17 @@
 /* Micrium: Micrium software products porting for RT-Thread */
 
 /* end of Micrium: Micrium software products porting for RT-Thread */
+#define PKG_USING_LITTLEFS
+#define PKG_USING_LITTLEFS_LATEST_VERSION
+#define LFS_READ_SIZE 256
+#define LFS_PROG_SIZE 256
+#define LFS_BLOCK_SIZE 4096
+#define LFS_NO_DEBUG
+#define LFS_CACHE_SIZE 256
+#define LFS_BLOCK_CYCLES -1
+#define LFS_THREADSAFE
+#define LFS_LOOKAHEAD_MAX 128
+#define RT_DEF_LFS_DRIVERS 1
 /* end of system packages */
 
 /* peripheral libraries and drivers */
@@ -426,15 +450,21 @@
 
 #define BSP_USING_LPUART
 #define BSP_USING_LPUART12
+#define BSP_USING_FLEXSPI
+#define BSP_USING_FLEXSPI1
 /* end of On-chip Peripheral Drivers */
 
 /* Onboard Peripheral Drivers */
 
+#define BSP_USE_MULTICORE
+#define BSP_USE_MULTICORE_KICK_OFF
+#define BSP_USING_FS
+#define BSP_USING_QSPI_FLASH_FS
 /* end of Onboard Peripheral Drivers */
 
 /* Board extended module Drivers */
 
-#define BSP_LINKER_SCRIPT_RAM
+#define BSP_LINKER_SCRIPT_FLEXSPI_NOR
 /* end of Hardware Drivers Config */
 
 #endif

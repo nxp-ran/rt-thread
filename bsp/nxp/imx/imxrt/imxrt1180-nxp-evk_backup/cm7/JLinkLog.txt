@@ -1,0 +1,389 @@
+T6098 000:204.571   SEGGER J-Link V9.56 Log File
+T6098 000:204.771   DLL Compiled: Jul  1 2026 16:46:42
+T6098 000:204.818   Logging started @ 2026-07-10 06:57
+T6098 000:204.836   Process: C:\Users\nxg01727\AppData\Local\Keil_v5\UV4\UV4.exe
+T6098 000:204.856 - 204.852ms 
+T6098 000:204.888 JLINK_SetWarnOutHandler(...)
+T6098 000:204.904 - 0.017ms 
+T6098 000:204.922 JLINK_OpenEx(...)
+T6098 000:236.010   Firmware: J-Link V11 compiled Apr  1 2025 10:02:30
+T6098 000:237.751   Firmware: J-Link V11 compiled Apr  1 2025 10:02:30
+T6098 000:259.380   Hardware: V11.00
+T6098 000:259.985   S/N: 601018574
+T6098 000:260.025   OEM: SEGGER
+T6098 000:260.116   Feature(s): RDI, FlashBP, FlashDL, JFlash, GDB
+T6098 000:264.094   Bootloader: 2019 Jul 04
+T6098 000:269.113   USB speed mode: High speed (480 MBit/s)
+T6098 000:270.207   TELNET listener socket opened on port 19021
+T6098 000:270.562   WEBSRV WEBSRV_Init(): Starting webserver thread(s)
+T6098 000:270.719   WEBSRV Failed to put socket into listener state (port 19080)
+T6098 000:270.987   WEBSRV Webserver running on local port 19081
+T6098 000:271.223   Looking for J-Link GUI Server exe at: C:\Users\nxg01727\AppData\Local\Keil_v5\ARM\Segger\JLinkGUIServer.exe
+T6098 000:271.464   Looking for J-Link GUI Server exe at: C:\Program Files\SEGGER\JLink_V956\JLinkGUIServer.exe
+T6098 000:271.595   Forking J-Link GUI Server: C:\Program Files\SEGGER\JLink_V956\JLinkGUIServer.exe
+T6098 000:388.072   J-Link GUI Server info: "J-Link GUI server V9.56 "
+T6098 000:388.764 - 183.831ms returns "O.K."
+T6098 000:388.969 JLINK_GetEmuCaps()
+T6098 000:389.002 - 0.029ms returns 0xB9FF7BBF
+T6098 000:389.030 JLINK_TIF_GetAvailable(...)
+T6098 000:389.717 - 0.688ms 
+T6098 000:389.958 JLINK_SetErrorOutHandler(...)
+T6098 000:390.008 - 0.049ms 
+T6098 000:390.068 JLINK_ExecCommand("ProjectFile = "C:\0.RanChen\2.Projects\RT-Thread\rt-thread_pr\rt-thread\bsp\nxp\imx\imxrt\imxrt1180-nxp-evk_backup\cm7\JLinkSettings.ini"", ...). 
+T6098 000:411.504   XML file found at: C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\iMXRT2660.xml
+T6098 000:413.258   C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\iMXRT2660.xml evaluated successfully.
+T6098 000:413.306     Device entry created:  MIMXRT2660
+T6098 000:413.325       ChipInfo:
+T6098 000:413.351         Vendor:          NXP
+T6098 000:413.375         Name:            MIMXRT2660
+T6098 000:413.400         WorkRAMAddr:     0x20000000
+T6098 000:413.448         WorkRAMSize:     0x00080000
+T6098 000:413.476         Core:            JLINK_CORE_CORTEX_M85
+T6098 000:413.610         Script:          C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\NXP_iMXRT2660_CortexM85.JLinkScript
+T6098 000:413.724     Device entry created:  MIMXRT2660_NPU
+T6098 000:413.750       ChipInfo:
+T6098 000:413.775         Vendor:          NXP
+T6098 000:413.811         Name:            MIMXRT2660_NPU
+T6098 000:413.838         Core:            JLINK_CORE_RISC_V
+T6098 000:413.989         Script:          C:\Users\nxg01727\AppData\Roaming\SEGGER\JLinkDevices\Jlink\Devices\NXP\iMXRT2660\Devices\NXP\iMXRT2660\RT2660_NPU_RISV.JLinkScript
+T6098 000:415.243   Ref file found at: C:\Users\nxg01727\AppData\Local\Keil_v5\ARM\Segger\JLinkDevices.ref
+T6098 000:415.486   REF file references invalid XML file: C:\Program Files\SEGGER\JLink_V956\JLinkDevices.xml
+T6098 000:415.818 - 25.751ms returns 0x00
+T6098 000:415.868 JLINK_ExecCommand("Device = MIMXRT1189CVM8C:cm7", ...). 
+T6098 000:416.120   Flash bank @ 0x28000000: SFL: Parsing sectorization info from ELF file
+T6098 000:416.163     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T6098 000:428.082   Flash bank @ 0x38000000: SFL: Parsing sectorization info from ELF file
+T6098 000:428.149     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T6098 000:440.249   Flash bank @ 0x04000000: SFL: Parsing sectorization info from ELF file
+T6098 000:440.400     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T6098 000:446.528   Flash bank @ 0x14000000: SFL: Parsing sectorization info from ELF file
+T6098 000:446.601     FlashDevice.SectorInfo[0]: .SectorSize = 0x00010000, .SectorStartAddr = 0x00000000
+T6098 000:452.502   Warning: RAM area starts at address 0x00000000 this can lead to conflicts between RAMCodes and VectorCatch. 
+T6098 000:452.595   Device "MIMXRT1189XXX8_M7" selected.
+T6098 000:455.386 - 39.517ms returns 0x00
+T6098 000:455.478   ERROR: Unknown command
+T6098 000:455.509 JLINK_GetHardwareVersion()
+T6098 000:455.528 - 0.016ms returns 110000
+T6098 000:455.548 JLINK_GetDLLVersion()
+T6098 000:455.565 - 0.017ms returns 95600
+T6098 000:455.584 JLINK_GetOEMString(...)
+T6098 000:455.605 JLINK_GetFirmwareString(...)
+T6098 000:455.624 - 0.018ms 
+T6098 000:455.650 JLINK_GetDLLVersion()
+T6098 000:455.669 - 0.019ms returns 95600
+T6098 000:455.686 JLINK_GetCompileDateTime()
+T6098 000:455.701 - 0.016ms 
+T6098 000:455.720 JLINK_GetFirmwareString(...)
+T6098 000:455.737 - 0.016ms 
+T6098 000:455.758 JLINK_GetHardwareVersion()
+T6098 000:455.777 - 0.019ms returns 110000
+T6098 000:455.796 JLINK_GetSN()
+T6098 000:455.813 - 0.017ms returns 601018574
+T6098 000:455.831 JLINK_GetOEMString(...)
+T6098 000:455.856 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T6098 000:459.165 - 3.308ms returns 0x00
+T6098 000:459.359 JLINK_HasError()
+T6098 000:459.419 JLINK_SetSpeed(5000)
+T6098 000:460.095 - 0.679ms 
+T6098 000:460.734 JLINK_HasError()
+T6098 000:460.786 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
+T6098 000:460.809 - 0.023ms returns JLINKARM_RESET_TYPE_NORMAL
+T6098 000:460.830 JLINK_Reset()
+T6098 000:487.635   ConfigTargetSettings() start
+T6098 000:487.736    J-Link Script File: Executing ConfigTargetSettings()
+T6098 000:487.767   ConfigTargetSettings() end - Took 29us
+T6098 000:487.796   InitTarget() start
+T6098 000:487.819    J-Link Script File: Executing InitTarget()
+T6098 000:488.811   ***************************************************
+T6098 000:488.866   Current core is CM7
+T6098 000:488.890   ***************************************************
+T6098 000:491.998   Not flash execution mode, check if CM33 is halted...
+T6098 000:495.231   CM33 is halted. CM33 DHCSR: 0x03130003
+T6098 000:497.557   CM7 is running already
+T6098 000:500.137   SI_VER = 0x00000002
+T6098 000:500.220   TRAP   = 0x100025D4
+T6098 000:500.247   InitTarget() end - Took 12.4ms
+T6098 000:501.503   Found SW-DP with ID 0x5BA02477
+T6098 000:505.495   DPIDR: 0x5BA02477
+T6098 000:505.551   CoreSight SoC-400 or earlier
+T6098 000:505.577   AP map detection skipped. Manually configured AP map found.
+T6098 000:505.607   AP[0]: AHB-AP (IDR: Not set, ADDR: 0x00000000)
+T6098 000:505.631   AP[1]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T6098 000:505.655   AP[2]: AHB-AP (IDR: Not set, ADDR: 0x00000000)
+T6098 000:505.679   AP[3]: AHB-AP (IDR: Not set, ADDR: 0x00000000)
+T6098 000:505.704   AP[4]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T6098 000:505.728   AP[5]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T6098 000:505.751   AP[6]: APB-AP (IDR: Not set, ADDR: 0x00000000)
+T6098 000:507.158   AP[2]: Core found
+T6098 000:507.213   AP[2]: AHB-AP ROM base: 0xE00FD000
+T6098 000:507.898   CPUID register: 0x411FC272. Implementer code: 0x41 (ARM)
+T6098 000:508.715   Cache: L1 I/D-cache present
+T6098 000:508.773   Found Cortex-M7 r1p2, Little endian.
+T6098 000:510.099   -- Max. mem block: 0x00005988
+T6098 000:512.438   CPU_ReadMem(4 bytes @ 0xE000EDF0)
+T6098 000:513.231   CPU_ReadMem(4 bytes @ 0xE0002000)
+T6098 000:513.922   FPUnit: 8 code (BP) slots and 0 literal slots
+T6098 000:513.981   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6098 000:514.690   CPU_ReadMem(4 bytes @ 0xE0001000)
+T6098 000:515.484   CPU_WriteMem(4 bytes @ 0xE0001000)
+T6098 000:516.256   CPU_ReadMem(4 bytes @ 0xE000ED88)
+T6098 000:516.983   CPU_WriteMem(4 bytes @ 0xE000ED88)
+T6098 000:517.728   CPU_ReadMem(4 bytes @ 0xE000ED88)
+T6098 000:518.474   CPU_WriteMem(4 bytes @ 0xE000ED88)
+T6098 000:519.227   CoreSight components:
+T6098 000:519.283   ROMTbl[0] @ E00FD000
+T6098 000:519.309   CPU_ReadMem(64 bytes @ 0xE00FD000)
+T6098 000:520.236   CPU_ReadMem(32 bytes @ 0xE00FEFE0)
+T6098 000:520.981   [0][0]: E00FE000 CID B105100D PID 000BB4C8 ROM Table
+T6098 000:521.024   ROMTbl[1] @ E00FE000
+T6098 000:521.056   CPU_ReadMem(64 bytes @ 0xE00FE000)
+T6098 000:521.984   CPU_ReadMem(32 bytes @ 0xE00FFFE0)
+T6098 000:522.756   [1][0]: E00FF000 CID B105100D PID 000BB4C7 ROM Table
+T6098 000:522.798   ROMTbl[2] @ E00FF000
+T6098 000:522.823   CPU_ReadMem(64 bytes @ 0xE00FF000)
+T6098 000:523.722   CPU_ReadMem(32 bytes @ 0xE000EFE0)
+T6098 000:524.500   [2][0]: E000E000 CID B105E00D PID 000BB00C SCS-M7
+T6098 000:524.546   CPU_ReadMem(32 bytes @ 0xE0001FE0)
+T6098 000:525.343   [2][1]: E0001000 CID B105E00D PID 000BB002 DWT
+T6098 000:525.378   CPU_ReadMem(32 bytes @ 0xE0002FE0)
+T6098 000:526.191   [2][2]: E0002000 CID B105E00D PID 000BB00E FPB-M7
+T6098 000:526.228   CPU_ReadMem(32 bytes @ 0xE0000FE0)
+T6098 000:527.063   [2][3]: E0000000 CID B105E00D PID 000BB001 ITM
+T6098 000:527.097   CPU_ReadMem(32 bytes @ 0xE0041FE0)
+T6098 000:527.996   [1][1]: E0041000 CID B105900D PID 001BB975 ETM-M7
+T6098 000:528.048   CPU_ReadMem(32 bytes @ 0xE0042FE0)
+T6098 000:528.847   [1][2]: E0042000 CID B105900D PID 004BB906 CTI
+T6098 000:528.895   CPU_ReadMem(32 bytes @ 0xE0043FE0)
+T6098 000:529.610   [0][1]: E0043000 CID B105900D PID 001BB908 CSTF
+T6098 000:529.646   CPU_WriteMem(4 bytes @ 0xE000ED84)
+T6098 000:530.328   CPU_ReadMem(4 bytes @ 0xE000ED80)
+T6098 000:531.036   I-Cache L1: 32 KB, 512 Sets, 32 Bytes/Line, 2-Way
+T6098 000:531.069   CPU_WriteMem(4 bytes @ 0xE000ED84)
+T6098 000:531.782   CPU_ReadMem(4 bytes @ 0xE000ED80)
+T6098 000:532.445   D-Cache L1: 32 KB, 256 Sets, 32 Bytes/Line, 4-Way
+T6098 000:532.490   SetupTarget() start
+T6098 000:532.514    J-Link Script File: Executing SetupTarget()
+T6098 000:532.533   SetupTarget() end - Took 18us
+T6098 000:552.005   ResetTarget() start
+T6098 000:552.060    J-Link Script File: Executing ResetTarget()
+T6098 000:564.963   CPU_ReadMem(4 bytes @ 0x44460018)
+T6098 000:566.030   CPU_ReadMem(4 bytes @ 0x44460050)
+T6098 000:566.873   CPU_WriteMem(4 bytes @ 0x44460050)
+T6098 000:567.600   CPU_ReadMem(64 bytes @ 0x00000000)
+T6098 000:568.456    -- Updating C cache (64 bytes @ 0x00000000)
+T6098 000:568.501    -- Read from C cache (4 bytes @ 0x00000000)
+T6098 000:568.526    -- Read from C cache (4 bytes @ 0x00000004)
+T6098 000:568.550    -- Read from C cache (4 bytes @ 0x00000008)
+T6098 000:568.583   Set CM33 watch point
+T6098 000:582.763   Execute SYSRESETREQ via AIRCR
+T6098 000:582.867   CPU_WriteMem(4 bytes @ 0xE000ED0C)
+T6098 000:692.331   ************* Begin Operations to Enable CM7 ***********************
+T6098 000:692.470   ******** Prepare Clock *********
+T6098 000:702.225   ******** Creating Landing Zone *********
+T6098 000:714.362   ******** ELE Trigger *********
+T6098 000:721.559   ELE RESP1 : 0xE1D20206
+T6098 000:721.615   ELE RESP2 : 0x000000D6
+T6098 000:721.640   ******** Kickoff CM7 *********
+T6098 000:723.994   CPU_WriteMem(4 bytes @ 0xE000EDF0)
+T6098 000:725.485   restore CM7 ITCM
+T6098 000:725.560   CPU_WriteMem(4 bytes @ 0x00000000)
+T6098 000:726.246   CPU_WriteMem(4 bytes @ 0x00000004)
+T6098 000:726.978   CPU_WriteMem(4 bytes @ 0x00000008)
+T6098 000:727.694   restore CM33 watch points
+T6098 000:732.449   ResetTarget() end - Took 180ms
+T6098 000:732.497   Device specific reset executed.
+T6098 000:735.717   AfterResetTarget() start
+T6098 000:735.767    J-Link Script File: Executing AfterResetTarget()
+T6098 000:735.787   ***************************************************
+T6098 000:735.810   Init Flash
+T6098 000:735.838   CPU_ReadMem(4 bytes @ 0x425E0000)
+T6098 000:736.487   CPU_ReadMem(4 bytes @ 0x425E0000)
+T6098 000:737.179   CPU_WriteMem(4 bytes @ 0x42A1023C)
+T6098 000:737.908   CPU_WriteMem(4 bytes @ 0x42A10544)
+T6098 000:738.575   CPU_WriteMem(4 bytes @ 0x42A10240)
+T6098 000:739.308   CPU_WriteMem(4 bytes @ 0x42A10244)
+T6098 000:740.113   CPU_WriteMem(4 bytes @ 0x42A10248)
+T6098 000:740.805   CPU_WriteMem(4 bytes @ 0x42A1024C)
+T6098 000:741.458   CPU_WriteMem(4 bytes @ 0x42A10250)
+T6098 000:742.105   CPU_WriteMem(4 bytes @ 0x42A10254)
+T6098 000:744.979   CPU_WriteMem(4 bytes @ 0x54450A80)
+T6098 000:745.708   CPU_ReadMem(4 bytes @ 0x425E0000)
+T6098 000:746.385   CPU_WriteMem(4 bytes @ 0x425E0000)
+T6098 000:747.032   CPU_WriteMem(4 bytes @ 0x425E0000)
+T6098 000:747.658   CPU_WriteMem(4 bytes @ 0x425E0008)
+T6098 000:748.293   CPU_WriteMem(4 bytes @ 0x425E000C)
+T6098 000:748.971   CPU_WriteMem(4 bytes @ 0x425E0060)
+T6098 000:749.637   CPU_WriteMem(4 bytes @ 0x425E0094)
+T6098 000:750.318   CPU_WriteMem(4 bytes @ 0x425E00B8)
+T6098 000:751.010   CPU_WriteMem(4 bytes @ 0x425E0018)
+T6098 000:751.685   CPU_WriteMem(4 bytes @ 0x425E001C)
+T6098 000:752.444   CPU_WriteMem(4 bytes @ 0x425E0200)
+T6098 000:753.135   CPU_WriteMem(4 bytes @ 0x425E0204)
+T6098 000:753.834   CPU_WriteMem(4 bytes @ 0x425E0208)
+T6098 000:754.690   CPU_WriteMem(4 bytes @ 0x425E020C)
+T6098 000:755.398   CPU_WriteMem(4 bytes @ 0x425E0210)
+T6098 000:756.162   CPU_WriteMem(4 bytes @ 0x425E0214)
+T6098 000:756.943   CPU_WriteMem(4 bytes @ 0x425E0218)
+T6098 000:757.841   CPU_WriteMem(4 bytes @ 0x425E021C)
+T6098 000:758.692   CPU_WriteMem(4 bytes @ 0x425E0220)
+T6098 000:759.520   CPU_WriteMem(4 bytes @ 0x425E0224)
+T6098 000:760.373   CPU_WriteMem(4 bytes @ 0x425E0228)
+T6098 000:761.016   CPU_WriteMem(4 bytes @ 0x425E022C)
+T6098 000:761.746   CPU_WriteMem(4 bytes @ 0x425E0230)
+T6098 000:762.460   CPU_WriteMem(4 bytes @ 0x425E0234)
+T6098 000:763.168   CPU_WriteMem(4 bytes @ 0x425E0238)
+T6098 000:763.840   CPU_WriteMem(4 bytes @ 0x425E023C)
+T6098 000:764.534   CPU_WriteMem(4 bytes @ 0x425E0240)
+T6098 000:765.236   CPU_WriteMem(4 bytes @ 0x425E0244)
+T6098 000:765.899   CPU_WriteMem(4 bytes @ 0x425E0248)
+T6098 000:766.555   CPU_WriteMem(4 bytes @ 0x425E024C)
+T6098 000:767.216   CPU_WriteMem(4 bytes @ 0x425E0250)
+T6098 000:767.798   CPU_WriteMem(4 bytes @ 0x425E0254)
+T6098 000:768.445   CPU_WriteMem(4 bytes @ 0x425E0258)
+T6098 000:769.127   CPU_WriteMem(4 bytes @ 0x425E025C)
+T6098 000:769.781   CPU_WriteMem(4 bytes @ 0x425E0260)
+T6098 000:770.600   CPU_WriteMem(4 bytes @ 0x425E0264)
+T6098 000:771.345   CPU_WriteMem(4 bytes @ 0x425E0268)
+T6098 000:772.053   CPU_WriteMem(4 bytes @ 0x425E026C)
+T6098 000:772.954   CPU_WriteMem(4 bytes @ 0x425E0270)
+T6098 000:773.719   CPU_WriteMem(4 bytes @ 0x425E0274)
+T6098 000:774.462   CPU_WriteMem(4 bytes @ 0x425E0278)
+T6098 000:775.206   CPU_WriteMem(4 bytes @ 0x425E027C)
+T6098 000:775.938   CPU_WriteMem(4 bytes @ 0x425E0018)
+T6098 000:776.685   CPU_WriteMem(4 bytes @ 0x425E001C)
+T6098 000:777.450   ***************************************************
+T6098 000:777.486   ***************************************************
+T6098 000:777.533   Init HyperRAM
+T6098 000:777.564   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:778.356   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:779.156   CPU_WriteMem(4 bytes @ 0x42A10088)
+T6098 000:779.974   CPU_WriteMem(4 bytes @ 0x42A1008C)
+T6098 000:780.910   CPU_WriteMem(4 bytes @ 0x42A10090)
+T6098 000:781.781   CPU_WriteMem(4 bytes @ 0x42A10094)
+T6098 000:782.665   CPU_WriteMem(4 bytes @ 0x42A1009C)
+T6098 000:783.578   CPU_WriteMem(4 bytes @ 0x42A100A0)
+T6098 000:784.441   CPU_WriteMem(4 bytes @ 0x42A100A4)
+T6098 000:785.233   CPU_WriteMem(4 bytes @ 0x42A100A8)
+T6098 000:785.924   CPU_WriteMem(4 bytes @ 0x42A100AC)
+T6098 000:786.708   CPU_WriteMem(4 bytes @ 0x42A100B0)
+T6098 000:787.471   CPU_WriteMem(4 bytes @ 0x42A100B4)
+T6098 000:788.175   CPU_WriteMem(4 bytes @ 0x42A10594)
+T6098 000:788.891   CPU_WriteMem(4 bytes @ 0x42A10590)
+T6098 000:789.533   CPU_WriteMem(4 bytes @ 0x42A1058C)
+T6098 000:790.277   CPU_WriteMem(4 bytes @ 0x42A10588)
+T6098 000:791.094   CPU_WriteMem(4 bytes @ 0x42A10578)
+T6098 000:791.998   CPU_WriteMem(4 bytes @ 0x42A1057C)
+T6098 000:792.869   CPU_WriteMem(4 bytes @ 0x42A10580)
+T6098 000:793.723   CPU_WriteMem(4 bytes @ 0x42A10584)
+T6098 000:794.544   CPU_WriteMem(4 bytes @ 0x42A10570)
+T6098 000:795.429   CPU_WriteMem(4 bytes @ 0x42A10598)
+T6098 000:796.347   CPU_WriteMem(4 bytes @ 0x42A102D0)
+T6098 000:797.129   CPU_WriteMem(4 bytes @ 0x42A102D4)
+T6098 000:797.966   CPU_WriteMem(4 bytes @ 0x42A102D8)
+T6098 000:798.809   CPU_WriteMem(4 bytes @ 0x42A102DC)
+T6098 000:799.659   CPU_WriteMem(4 bytes @ 0x42A102E4)
+T6098 000:800.521   CPU_WriteMem(4 bytes @ 0x42A102E8)
+T6098 000:801.465   CPU_WriteMem(4 bytes @ 0x42A102EC)
+T6098 000:802.322   CPU_WriteMem(4 bytes @ 0x42A102F0)
+T6098 000:803.225   CPU_WriteMem(4 bytes @ 0x42A102F4)
+T6098 000:803.965   CPU_WriteMem(4 bytes @ 0x42A102F8)
+T6098 000:804.645   CPU_WriteMem(4 bytes @ 0x42A102FC)
+T6098 000:807.863   CPU_WriteMem(4 bytes @ 0x44450B00)
+T6098 000:808.623   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:809.299   CPU_WriteMem(4 bytes @ 0x445E0000)
+T6098 000:809.919   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:810.584   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:811.286   CPU_WriteMem(4 bytes @ 0x445E0000)
+T6098 000:811.901   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:812.480   CPU_WriteMem(4 bytes @ 0x445E0000)
+T6098 000:813.125   CPU_WriteMem(4 bytes @ 0x445E0004)
+T6098 000:813.744   CPU_WriteMem(4 bytes @ 0x445E0008)
+T6098 000:814.619   CPU_WriteMem(4 bytes @ 0x445E000C)
+T6098 000:815.337   CPU_WriteMem(4 bytes @ 0x445E0020)
+T6098 000:816.019   CPU_WriteMem(4 bytes @ 0x445E0024)
+T6098 000:816.800   CPU_WriteMem(4 bytes @ 0x445E0028)
+T6098 000:817.527   CPU_WriteMem(4 bytes @ 0x445E002C)
+T6098 000:818.174   CPU_WriteMem(4 bytes @ 0x445E0030)
+T6098 000:818.843   CPU_WriteMem(4 bytes @ 0x445E0034)
+T6098 000:819.618   CPU_WriteMem(4 bytes @ 0x445E0038)
+T6098 000:820.389   CPU_WriteMem(4 bytes @ 0x445E003C)
+T6098 000:821.139   CPU_WriteMem(4 bytes @ 0x445E00B8)
+T6098 000:821.899   CPU_WriteMem(4 bytes @ 0x445E00BC)
+T6098 000:822.625   CPU_WriteMem(4 bytes @ 0x445E0060)
+T6098 000:823.434   CPU_WriteMem(4 bytes @ 0x445E0064)
+T6098 000:824.259   CPU_WriteMem(4 bytes @ 0x445E0068)
+T6098 000:825.040   CPU_WriteMem(4 bytes @ 0x445E006C)
+T6098 000:825.783   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:826.539   CPU_WriteMem(4 bytes @ 0x445E0060)
+T6098 000:827.294   CPU_WriteMem(4 bytes @ 0x445E0070)
+T6098 000:828.041   CPU_WriteMem(4 bytes @ 0x445E0080)
+T6098 000:828.816   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:829.598   CPU_WriteMem(4 bytes @ 0x445E00C0)
+T6098 000:830.331   CPU_WriteMem(4 bytes @ 0x445E0000)
+T6098 000:831.035   CPU_ReadMem(4 bytes @ 0x445E00E8)
+T6098 000:832.932   CPU_WriteMem(4 bytes @ 0x445E0000)
+T6098 000:833.743   CPU_WriteMem(4 bytes @ 0x445E0094)
+T6098 000:834.451   CPU_WriteMem(4 bytes @ 0x445E0094)
+T6098 000:835.127   CPU_WriteMem(4 bytes @ 0x445E0000)
+T6098 000:835.758   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:836.423   CPU_ReadMem(4 bytes @ 0x445E00E0)
+T6098 000:837.081   CPU_WriteMem(4 bytes @ 0x445E0018)
+T6098 000:837.779   CPU_WriteMem(4 bytes @ 0x445E001C)
+T6098 000:838.445   CPU_WriteMem(4 bytes @ 0x445E0200)
+T6098 000:839.100   CPU_WriteMem(4 bytes @ 0x445E0204)
+T6098 000:839.859   CPU_WriteMem(4 bytes @ 0x445E0208)
+T6098 000:840.795   CPU_WriteMem(4 bytes @ 0x445E020C)
+T6098 000:841.622   CPU_WriteMem(4 bytes @ 0x445E0210)
+T6098 000:842.516   CPU_WriteMem(4 bytes @ 0x445E0214)
+T6098 000:843.347   CPU_WriteMem(4 bytes @ 0x445E0218)
+T6098 000:844.133   CPU_WriteMem(4 bytes @ 0x445E021C)
+T6098 000:844.962   CPU_WriteMem(4 bytes @ 0x445E0220)
+T6098 000:845.767   CPU_WriteMem(4 bytes @ 0x445E0224)
+T6098 000:846.533   CPU_WriteMem(4 bytes @ 0x445E0228)
+T6098 000:847.403   CPU_WriteMem(4 bytes @ 0x445E022C)
+T6098 000:848.217   CPU_WriteMem(4 bytes @ 0x445E0230)
+T6098 000:848.964   CPU_WriteMem(4 bytes @ 0x445E0234)
+T6098 000:849.761   CPU_WriteMem(4 bytes @ 0x445E0238)
+T6098 000:850.521   CPU_WriteMem(4 bytes @ 0x445E023C)
+T6098 000:851.295   CPU_WriteMem(4 bytes @ 0x445E0240)
+T6098 000:852.035   CPU_WriteMem(4 bytes @ 0x445E0244)
+T6098 000:852.815   CPU_WriteMem(4 bytes @ 0x445E0248)
+T6098 000:853.599   CPU_WriteMem(4 bytes @ 0x445E024C)
+T6098 000:854.386   CPU_WriteMem(4 bytes @ 0x445E0018)
+T6098 000:855.135   CPU_WriteMem(4 bytes @ 0x445E001C)
+T6098 000:855.843   CPU_WriteMem(4 bytes @ 0x445E00A0)
+T6098 000:856.523   CPU_WriteMem(4 bytes @ 0x445E00A4)
+T6098 000:857.307   CPU_WriteMem(4 bytes @ 0x445E00BC)
+T6098 000:858.090   CPU_WriteMem(4 bytes @ 0x445E0180)
+T6098 000:858.833   CPU_WriteMem(4 bytes @ 0x445E0014)
+T6098 000:859.601   CPU_WriteMem(4 bytes @ 0x445E00B0)
+T6098 000:860.390   CPU_ReadMem(4 bytes @ 0x445E0014)
+T6098 000:861.114   CPU_WriteMem(4 bytes @ 0x445E0014)
+T6098 000:861.851   CPU_WriteMem(4 bytes @ 0x445E00A0)
+T6098 000:862.668   CPU_WriteMem(4 bytes @ 0x445E00A4)
+T6098 000:863.466   CPU_WriteMem(4 bytes @ 0x445E00BC)
+T6098 000:864.221   CPU_WriteMem(4 bytes @ 0x445E0180)
+T6098 000:865.068   CPU_WriteMem(4 bytes @ 0x445E0014)
+T6098 000:865.868   CPU_WriteMem(4 bytes @ 0x445E00B0)
+T6098 000:866.687   CPU_ReadMem(4 bytes @ 0x445E0014)
+T6098 000:867.536   CPU_WriteMem(4 bytes @ 0x445E0014)
+T6098 000:868.378   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:869.232   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:870.070   CPU_WriteMem(4 bytes @ 0x445E0000)
+T6098 000:870.880   CPU_ReadMem(4 bytes @ 0x445E0000)
+T6098 000:871.756   ***************************************************
+T6098 000:871.812   AfterResetTarget() end - Took 136ms
+T6098 000:871.838   CPU_WriteMem(4 bytes @ 0xE0002000)
+T6098 000:872.677   CPU_ReadMem(4 bytes @ 0xE000EDFC)
+T6098 000:873.483   CPU_ReadMem(4 bytes @ 0xE0001000)
+T6098 000:874.370 - 413.539ms 
+T6098 000:874.474 JLINK_GetId()
+T6098 000:875.177 - 0.702ms returns 0x5BA02477
+T6098 000:882.585 JLINK_GetFirmwareString(...)
+T6098 000:882.655 - 0.070ms 
+T6098 097:425.744 JLINK_Close()
+T6098 097:427.728   CPU_ReadMem(4 bytes @ 0xE0001000)
+T6098 097:429.392   CPU_WriteMem(4 bytes @ 0xE0001004)
+T6098 097:433.880 - 8.133ms
+T6098 097:433.976   
+T6098 097:434.000   Closed

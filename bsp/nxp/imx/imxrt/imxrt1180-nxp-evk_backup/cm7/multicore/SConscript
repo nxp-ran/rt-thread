@@ -1,0 +1,50 @@
+Import('rtconfig')
+from building import *
+
+cwd = GetCurrentDir()
+
+# Base multicore sources (always included when BSP_USE_MULTICORE is enabled)
+src = Split("""
+mcmgr/src/mcmgr.c
+mcmgr/src/mcmgr_internal_core_api_imxrt1180.c
+mcmgr/src/mcmgr_mu_internal.c
+""")
+
+# Add RPMsg-Lite sources if enabled
+if GetDepend(['BSP_USE_MULTICORE_RPMSG_LITE']):
+    src += Split("""
+    rpmsg-lite/lib/common/llist.c
+    rpmsg-lite/lib/rpmsg_lite/rpmsg_lite.c
+    rpmsg-lite/lib/rpmsg_lite/rpmsg_queue.c
+    rpmsg-lite/lib/rpmsg_lite/rpmsg_ns.c
+    rpmsg-lite/lib/virtio/virtqueue.c
+    rpmsg-lite/lib/rpmsg_lite/porting/environment/rpmsg_env_rtthread.c
+    rpmsg-lite/lib/rpmsg_lite/porting/platform/imxrt1180/rpmsg_platform.c
+    """)
+
+# Base include paths
+CPPPATH = [
+    cwd,
+    cwd + '/mcmgr/inc',
+    cwd + '/mcmgr/inc/platform/imxrt1180'
+]
+
+# Add RPMsg-Lite include paths if enabled
+if GetDepend(['BSP_USE_MULTICORE_RPMSG_LITE']):
+    CPPPATH += [
+        cwd + '/rpmsg-lite/lib/include',
+        cwd + '/rpmsg-lite/lib/include/environment/rtthread',
+        cwd + '/rpmsg-lite/lib/include/platform/imxrt1180'
+    ]
+
+# Define preprocessor macros
+CPPDEFINES = []
+
+# Create component group with dependency on BSP_USE_MULTICORE
+group = DefineGroup('MultiCore', 
+                    src, 
+                    depend=['BSP_USE_MULTICORE'], 
+                    CPPPATH=CPPPATH, 
+                    CPPDEFINES=CPPDEFINES)
+
+Return('group')

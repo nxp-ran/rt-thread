@@ -1,0 +1,295 @@
+menu "Hardware Drivers Config"
+
+config BSP_USING_QSPIFLASH
+    bool
+    default n
+
+config SOC_MIMXRT1189CVM8C
+    bool
+    select SOC_IMXRT1180_SERIES
+    select BSP_USING_QSPIFLASH
+    select RT_USING_COMPONENTS_INIT
+    select RT_USING_USER_MAIN
+    default y
+
+config SOC_MIMXRT1189CVM8C_CM33
+    bool
+    default y
+    depends on SOC_MIMXRT1189CVM8C
+    select ARCH_ARM_CORTEX_M33
+    select ARCH_ARM_CORTEX_SECURE
+
+menu "On-chip Peripheral Drivers"
+
+    config BSP_USING_DMA
+        bool "Enable DMA"
+        default n
+
+    config BSP_USING_GPIO
+        bool "Enable GPIO"
+        select RT_USING_PIN
+        default y
+
+    config BSP_USING_RTC
+        bool "Enable RTC"
+        select RT_USING_RTC
+        default n
+
+    menuconfig BSP_USING_USB
+        bool "Enable USB (CherryUSB)"
+        default n
+
+    if BSP_USING_USB
+        choice
+            prompt "USB controller"
+            default BSP_CHERRYUSB_USING_OTG1
+
+            config BSP_CHERRYUSB_USING_OTG1
+                bool "USB OTG1"
+
+            config BSP_CHERRYUSB_USING_OTG2
+                bool "USB OTG2"
+        endchoice
+
+        choice
+            prompt "USB role"
+            default BSP_USING_CHERRYUSB_DEVICE
+
+            config BSP_USING_CHERRYUSB_DEVICE
+                bool "Enable USB Device"
+                select RT_USING_CHERRYUSB
+                select RT_CHERRYUSB_DEVICE
+
+            config BSP_USING_CHERRYUSB_HOST
+                bool "Enable USB Host"
+                select RT_USING_CHERRYUSB
+                select RT_CHERRYUSB_HOST
+                select RT_USING_TIMER_SOFT
+        endchoice
+
+    config BSP_CHERRYUSB_HOST_MOUSE_DEMO
+        bool "Enable CherryUSB host mouse shell demo"
+        depends on BSP_USING_CHERRYUSB_HOST
+        select RT_CHERRYUSB_HOST_HID
+        default n
+    endif
+
+    # Stack size for RT-Thread timer thread when using CherryUSB host
+    config RT_TIMER_THREAD_STACK_SIZE
+        int "Timer thread stack size for CherryUSB host"
+        range 1024 65535 if BSP_USING_CHERRYUSB_HOST
+        default 2048 if BSP_USING_CHERRYUSB_HOST
+        help
+            "Stack size (in bytes) for the RT-Thread timer thread used by
+            CherryUSB when running in host mode. The minimal usable value
+            is 1024, but many host demos and class drivers require more
+            stack. Use 2048 as a conservative default, increase to 4096
+            if you use multiple host class drivers or encounter stack
+            overflows during USB activity."
+
+    config BSP_USING_SDIO
+        bool "Enable SDIO"
+        select RT_USING_SDIO
+        select RT_USING_DFS
+        default n
+
+        if BSP_USING_SDIO
+            config CODE_STORED_ON_SDCARD
+                bool "Enable Code STORED On SDCARD"
+                default n
+                help
+                    "SD CARD work as boot devive"
+        endif
+
+    menuconfig BSP_USING_LPUART
+        bool "Enable UART"
+        select RT_USING_SERIAL
+        default y
+
+        if BSP_USING_LPUART
+            config BSP_USING_LPUART1
+                bool "Enable LPUART1"
+                default y
+
+        config BSP_LPUART1_RX_USING_DMA
+            bool "Enable LPUART1 RX DMA"
+            depends on BSP_USING_LPUART1
+            select BSP_USING_DMA
+            select RT_SERIAL_USING_DMA
+            default n
+
+        config BSP_LPUART1_RX_DMA_CHANNEL
+        depends on BSP_LPUART1_RX_USING_DMA
+        int "Set LPUART1 RX DMA channel (0-32)"
+        default 0
+
+                config BSP_LPUART1_TX_USING_DMA
+                    bool "Enable LPUART1 TX DMA"
+                    depends on BSP_USING_LPUART1
+                    select BSP_USING_DMA
+                    select RT_SERIAL_USING_DMA
+                    default n
+
+                    config BSP_LPUART1_TX_DMA_CHANNEL
+                        depends on BSP_LPUART1_TX_USING_DMA
+                        int "Set LPUART1 TX DMA channel (0-32)"
+                        default 1
+
+            config BSP_USING_LPUART3
+                bool "Enable LPUART3"
+                default n
+
+                config BSP_LPUART3_RX_USING_DMA
+                    bool "Enable LPUART3 RX DMA"
+                    depends on BSP_USING_LPUART3
+                    select BSP_USING_DMA
+                    select RT_SERIAL_USING_DMA
+                    default n
+
+                    config BSP_LPUART3_RX_DMA_CHANNEL
+                        depends on BSP_LPUART3_RX_USING_DMA
+                        int "Set LPUART3 RX DMA channel (0-32)"
+                        default 0
+
+                config BSP_LPUART3_TX_USING_DMA
+                    bool "Enable LPUART3 TX DMA"
+                    depends on BSP_USING_LPUART3
+                    select BSP_USING_DMA
+                    select RT_SERIAL_USING_DMA
+                    default n
+
+                    config BSP_LPUART3_TX_DMA_CHANNEL
+                        depends on BSP_LPUART3_TX_USING_DMA
+                        int "Set LPUART3 TX DMA channel (0-32)"
+                        default 1
+        endif
+
+        menuconfig BSP_USING_CAN
+            bool "Enable CAN"
+            select RT_USING_CAN
+            default n
+            if BSP_USING_CAN
+                config BSP_USING_CAN3
+                    bool "Enable FLEXCAN3"
+                    default n
+            endif
+
+        menuconfig BSP_USING_FLEXSPI
+            bool "Enable FLEXSPI"
+            default n
+            if BSP_USING_FLEXSPI
+                config BSP_USING_FLEXSPI1
+                    bool "Enable FLEXSPI1"
+                    default n
+                config BSP_USING_FLEXSPI2
+                    bool "Enable FLEXSPI2"
+                    default n
+            endif
+endmenu
+  menu "Onboard Peripheral Drivers"
+
+      # config BSP_USING_SDRAM
+      #     bool "Enable SDRAM"
+      #     default n
+
+      config BSP_USE_HYPERRAM
+          bool "Enable HyperRAM"
+          default n
+
+      menuconfig BSP_USE_MULTICORE
+          bool "Enable Multicore"
+          default n
+
+          if BSP_USE_MULTICORE
+              config BSP_USE_MULTICORE_KICK_OFF
+                  bool "Enable CM33 Kick-off CM7"
+                  default y
+                  help
+                      Enable CM33 core to kick-off CM7 core startup. 
+                      This is required for proper initialization sequence 
+                      when CM33 (master) boots CM7 (remote) core.
+            
+              config BSP_USE_MULTICORE_RPMSG_LITE
+                  bool "Enable RPMsg-Lite for Inter-Core Communication"
+                  default y
+                  help
+                      Enable RPMsg-Lite messaging system for communication between cores.
+                      RPMsg-Lite provides a lightweight implementation of the RPMsg protocol
+                      for inter-processor communication using shared memory.
+                      CM33 runs as master core, CM7 runs as remote core.
+
+              if BSP_USE_MULTICORE_RPMSG_LITE
+                  config RPMSG_LITE_LINK_ID
+                      int "RPMsg-Lite Link ID"
+                      default 0
+                      help
+                          Specify the link ID for RPMsg-Lite communication.
+                          Default is RL_PLATFORM_IMXRT1180_M33_M7_LINK_ID (0).
+
+                  config RPMSG_LOCAL_EPT_ADDR
+                      int "Local Endpoint Address (CM33 side)"
+                      range 0 65535
+                      default 40
+                      help
+                          Specify the local endpoint address for RPMsg communication on CM33 side.
+
+                  config RPMSG_NS_ANNOUNCE_STRING
+                      string "RPMsg Nameservice Announce String"
+                      default "rpmsg-openamp-demo-channel"
+                      help
+                          The string used by CM7 remote core to announce the service.
+                
+                  config RPMSG_SHARED_MEM_SIZE
+                      int "RPMsg Shared Memory Size (bytes)"
+                      default 6144
+                      help
+                          Size of shared memory region for RPMsg communication.
+              endif
+          endif
+
+    menuconfig BSP_USING_ETH
+    bool "Enable Ethernet"
+	select RT_USING_SAL
+    select RT_USING_NETDEV
+    select RT_USING_LWIP
+    default n
+
+
+    if BSP_USING_ETH
+        config LWIP_SUPPORT_CUSTOM_PBUF
+            int
+            depends on RT_USING_LWIP_VER_NUM >= 0x20000
+            default 1
+
+        config NETC_USE_SWT
+            int "Enable NETC switch mode (0: EP0, 1: switch)"
+            range 0 1
+            default 0
+
+        config BSP_USING_PHY
+            select RT_USING_PHY
+            bool "Enable ethernet phy"
+            default y
+    endif
+
+    menuconfig BSP_USING_FS
+        bool "Enable File System"
+        select RT_USING_DFS_DEVFS
+        select RT_USING_DFS
+        default n
+
+        if BSP_USING_FS
+            config BSP_USING_SDCARD_FATFS
+                bool "Enable SDCARD (FATFS)"
+                select BSP_USING_SDIO
+                select RT_USING_DFS_ELMFAT
+                default n
+        endif
+
+  endmenu
+
+  menu "Board extended module Drivers"
+
+  endmenu
+
+  endmenu
