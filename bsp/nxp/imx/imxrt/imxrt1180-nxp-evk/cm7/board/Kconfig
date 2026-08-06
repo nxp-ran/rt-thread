@@ -567,6 +567,12 @@ menu "Onboard Peripheral Drivers"
                 default n
         endif
 
+    config BSP_USING_QSPI_FLASH
+        bool "Enable QSPI Flash"
+            select BSP_USING_FLEXSPI
+            select BSP_USING_FLEXSPI1
+        default n
+
 endmenu
 
 menu "Board extended module Drivers"
