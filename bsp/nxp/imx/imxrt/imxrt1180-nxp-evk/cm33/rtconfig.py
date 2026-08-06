@@ -229,6 +229,38 @@ elif PLATFORM == 'iccarm':
     EXEC_PATH = EXEC_PATH + '/arm/bin/'
     POST_ACTION = 'ielftool --bin $TARGET rtthread.bin'
 
+# Map from linker script type to the matching Keil target name.
+_LINKER_SCRIPT_TO_KEIL_TARGET = {
+    'RAM':                  'rtthread_ram',
+    'FLEXSPI_NOR':          'rtthread_flexspi_nor',
+    'FLEXSPI_NOR_HYPERRAM': 'rtthread_flexspi_nor_hyperram',
+}
+
+def update_keil_active_target(uvoptx_path='project.uvoptx'):
+    """Set <IsCurrentTarget> in project.uvoptx to match the selected linker script."""
+    import xml.etree.ElementTree as etree
+
+    active = _LINKER_SCRIPT_TO_KEIL_TARGET.get(_LINKER_SCRIPT_TYPE, 'rtthread_ram')
+
+    if not os.path.exists(uvoptx_path):
+        return
+
+    tree = etree.parse(uvoptx_path)
+    root = tree.getroot()
+
+    for tgt in tree.findall('Target'):
+        tname = tgt.find('TargetName')
+        is_current = tgt.find('TargetOption/OPTFL/IsCurrentTarget')
+        if tname is not None and is_current is not None:
+            is_current.text = '1' if tname.text == active else '0'
+
+    out = open(uvoptx_path, 'w')
+    out.write('<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n')
+    out.write(etree.tostring(root, encoding='utf-8').decode())
+    out.close()
+
+    print('Keil active target set to: ' + active)
+
 def dist_handle(BSP_ROOT, dist_dir):
     import sys
     cwd_path = os.getcwd()
