@@ -11,15 +11,12 @@
 
 #include <rtthread.h>
 #include <rtdevice.h>
-#include <drv_gpio.h>
-#include <fsl_rgpio.h>
 
 int main(void)
 {
     rt_kprintf("MIMXRT1180_CM7 Hello_World\r\n");
-
+    
     while (1)
     {
         rt_thread_mdelay(500);
-    }
 }
