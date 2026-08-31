@@ -152,9 +152,9 @@
 #define RT_SYSTEM_WORKQUEUE_STACKSIZE 2048
 #define RT_SYSTEM_WORKQUEUE_PRIORITY 23
 #define RT_USING_SERIAL
-#define RT_USING_SERIAL_V2
-#define RT_SERIAL_BUF_STRATEGY_OVERWRITE
+#define RT_USING_SERIAL_V1
 #define RT_SERIAL_USING_DMA
+#define RT_SERIAL_RB_BUFSZ 64
 #define RT_USING_PIN
 /* end of Device Drivers */
 
@@ -440,7 +440,7 @@
 
 /* Board extended module Drivers */
 
-#define BSP_LINKER_SCRIPT_FLEXSPI_NOR
+#define BSP_LINKER_SCRIPT_RAM
 /* end of Hardware Drivers Config */
 
 #endif
