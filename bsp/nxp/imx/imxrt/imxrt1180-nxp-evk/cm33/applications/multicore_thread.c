@@ -100,6 +100,18 @@ static void RPMsgRemoteReadyEventHandler(mcmgr_core_t coreNum, uint16_t eventDat
 }
 #endif
 
+#ifdef BSP_USE_MULTICORE_KICK_OFF_EARLY
+uint32_t multicore_get_startup_data(void)
+{
+#ifdef BSP_USE_MULTICORE_RPMSG_LITE
+    (void)MCMGR_RegisterEvent(kMCMGR_RemoteApplicationEvent, RPMsgRemoteReadyEventHandler,
+                              (void *)&RPMsgRemoteReadyEventData);
+    return (uint32_t)rpmsg_lite_base;
+#else
+    return 0U;
+#endif
+}
+#else
 static rt_err_t multicore_kickoff_init(void)
 {
     uint32_t core1_image_size, core1_image_source_addr, core1_image_dest_addr;
@@ -139,8 +151,12 @@ static rt_err_t multicore_kickoff_init(void)
     rt_kprintf("  Boot addr   = 0x%08x\r\n", core1_boot_addr);
 
     /* Prepare CM7 core */
-    BOARD_PrepareCore1(core1_image_source_addr, core1_image_dest_addr,
-                       core1_image_size, core1_boot_addr);
+    if (BOARD_PrepareCore1(core1_image_source_addr, core1_image_dest_addr,
+                           core1_image_size, core1_boot_addr) != kStatus_Success)
+    {
+        rt_kprintf("[Multicore] CM7 image preparation failed; core not started. Check container load/boot addresses.\r\n");
+        return -RT_ERROR;
+    }
 
 #ifdef BSP_USE_MULTICORE_RPMSG_LITE
     /* Boot CM7 core application */
@@ -165,6 +181,7 @@ static rt_err_t multicore_kickoff_init(void)
 
     return RT_EOK;
 }
+#endif
 #endif /* BSP_USE_MULTICORE_KICK_OFF */
 
 #ifdef BSP_USE_MULTICORE_RPMSG_LITE
@@ -301,7 +318,19 @@ static void multicore_thread_entry(void *parameter)
 {
     rt_kprintf("\r\n=== Multicore Communication Thread Started (CM33 Master) ===\r\n");
 
-#ifdef BSP_USE_MULTICORE_KICK_OFF
+#ifdef BSP_USE_MULTICORE_KICK_OFF_EARLY
+    if (BOARD_GetCore1KickoffStatus() != kStatus_Success)
+    {
+        rt_kprintf("[Multicore] Early CM7 kickoff failed!\r\n");
+        return;
+    }
+#ifdef BSP_USE_MULTICORE_RPMSG_LITE
+    while (APP_RPMSG_READY_EVENT_DATA != RPMsgRemoteReadyEventData)
+    {
+        rt_thread_mdelay(10);
+    }
+#endif
+#elif defined(BSP_USE_MULTICORE_KICK_OFF)
     /* Initialize and kickoff CM7 core */
     if (multicore_kickoff_init() != RT_EOK)
     {

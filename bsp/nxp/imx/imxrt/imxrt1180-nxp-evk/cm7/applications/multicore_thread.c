@@ -209,7 +209,7 @@ static void rpmsg_lite_cleanup(void)
  ******************************************************************************/
 static void multicore_thread_entry(void *parameter)
 {
-#ifndef BSP_USE_MULTICORE_RPMSG_LITE
+#if defined(BSP_USE_MULTICORE_KICK_OFF) && !defined(BSP_USE_MULTICORE_KICK_OFF_EARLY) && !defined(BSP_USE_MULTICORE_RPMSG_LITE)
     uint32_t startupData;
     mcmgr_status_t status;
 #endif
@@ -248,7 +248,7 @@ cleanup:
     {
         rt_kprintf("[Multicore] Communication completed successfully!\r\n");
     }
-#else
+#elif defined(BSP_USE_MULTICORE_KICK_OFF) && !defined(BSP_USE_MULTICORE_KICK_OFF_EARLY)
          /* Get the startup data */
     do
     {

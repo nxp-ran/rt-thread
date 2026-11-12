@@ -73,6 +73,8 @@
 #define CM7_ITCM_END_ADDR                0x80000UL  /* from pespective of CM7 */
 #define CM7_ITCM_SIZE                    0x80000UL  /* from pespective of CM7 */
 #define CM7_ITCM_ADDR_MAP_AT_CM33_DOMAIN 0x303C0000 /* from pespective of CM33 */
+#define CM7_OCRAM1_START_ADDR            0x20484000UL
+#define CM7_OCRAM1_END_ADDR              0x20500000UL
 #endif
 
 /*******************************************************************************
@@ -223,13 +225,35 @@ status_t BOARD_GetCore1ImageAddrSize(uint32_t *pImageSrcAddr,
  * image_src_addr image_dest_addr is address from perspective of core0(CM33)
  * boot_addr is address from perspective of core1(CM7)
  */
-void BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint32_t image_size, uint32_t boot_addr)
+status_t BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint32_t image_size, uint32_t boot_addr)
 {
-    /* The Cortex M7 XIP image runs from NOR Flash  */
+    (void)image_dest_addr;
+
+    /* The Cortex M7 image runs outside ITCM. */
     if ((boot_addr >= CM7_ITCM_END_ADDR) || ((CM7_ITCM_START_ADDR > 0U) && (boot_addr < CM7_ITCM_START_ADDR)))
     {
         /* Out of CM7 ITCM address space, CM7 core and its TCM ECC probably not initialized yet, do it here */
         Prepare_CM7(boot_addr);
+
+        if ((boot_addr >= CM7_OCRAM1_START_ADDR) && (boot_addr < CM7_OCRAM1_END_ADDR))
+        {
+            if ((image_size < 2U * sizeof(uint32_t)) ||
+                (image_size > CM7_OCRAM1_END_ADDR - boot_addr))
+            {
+                rt_kprintf("[Multicore] Invalid CM7 OCRAM1 image range\n");
+                return kStatus_Fail;
+            }
+
+            rt_kprintf("[Multicore] Copy CM7 image: 0x%08x -> 0x%08x, %u bytes\n",
+                       image_src_addr, boot_addr, image_size);
+            if (image_src_addr != boot_addr)
+            {
+                (void)memcpy((void *)boot_addr, (void *)image_src_addr, image_size);
+            }
+            DCACHE_CleanByRange(boot_addr, image_size);
+            __DSB();
+            __ISB();
+        }
 
 #if (defined(ENABLE_WORKAROUND_CM7_KICK_OFF) && (ENABLE_WORKAROUND_CM7_KICK_OFF > 0U))
         /*
@@ -252,6 +276,8 @@ void BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint3
         pRamVect[0] = pBootVect[0];
         pRamVect[1] = pBootVect[1];
 #endif /* (defined(ENABLE_WORKAROUND_CM7_KICK_OFF) && (ENABLE_WORKAROUND_CM7_KICK_OFF > 0U)) */
+        __DSB();
+        __ISB();
     }
     /* The Cortex M7 image runs from internal ITCM RAM  */
     else
@@ -272,6 +298,7 @@ void BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint3
         }
 #endif
     }
+    return kStatus_Success;
 }
 #endif
 
@@ -1476,6 +1503,46 @@ void SystemInitHook(void)
 }
 #endif
 
+#ifdef BSP_USE_MULTICORE_KICK_OFF_EARLY
+static status_t core1_kickoff_status = kStatus_Fail;
+
+static status_t BOARD_KickoffCore1Early(void)
+{
+    uint32_t image_source_addr, image_dest_addr, image_size, boot_addr;
+
+    if (MCMGR_Init() != kStatus_MCMGR_Success)
+    {
+        return kStatus_Fail;
+    }
+
+    if (BOARD_GetCore1ImageAddrSize(&image_source_addr, &image_dest_addr,
+                                   &image_size, &boot_addr) != kStatus_Success)
+    {
+        return kStatus_Fail;
+    }
+
+    if (BOARD_PrepareCore1(image_source_addr, image_dest_addr,
+                          image_size, boot_addr) != kStatus_Success)
+    {
+        return kStatus_Fail;
+    }
+
+    if (MCMGR_StartCore(kMCMGR_Core1, (void *)boot_addr,
+                       multicore_get_startup_data(),
+                       kMCMGR_Start_Asynchronous) != kStatus_MCMGR_Success)
+    {
+        return kStatus_Fail;
+    }
+
+    return kStatus_Success;
+}
+
+status_t BOARD_GetCore1KickoffStatus(void)
+{
+    return core1_kickoff_status;
+}
+#endif
+
 #ifdef BSP_USING_ETH
 void PHY_Reset(void)
 {
@@ -1506,6 +1573,10 @@ void rt_hw_board_init()
 
     NVIC_SetPriorityGrouping(NVIC_PRIORITYGROUP_4);
     SysTick_Config(SystemCoreClock / RT_TICK_PER_SECOND);
+
+#ifdef BSP_USE_MULTICORE_KICK_OFF_EARLY
+    core1_kickoff_status = BOARD_KickoffCore1Early();
+#endif
 
 #ifdef RT_USING_HEAP
     rt_system_heap_init((void *)HEAP_BEGIN, (void *)HEAP_END);

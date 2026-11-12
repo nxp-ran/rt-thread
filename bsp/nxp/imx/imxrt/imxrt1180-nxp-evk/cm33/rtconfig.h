@@ -452,11 +452,14 @@
 
 /* Onboard Peripheral Drivers */
 
+#define BSP_USE_MULTICORE
+#define BSP_USE_MULTICORE_KICK_OFF
+#define BSP_USE_MULTICORE_KICK_OFF_EARLY
 /* end of Onboard Peripheral Drivers */
 
 /* Board extended module Drivers */
 
-#define BSP_LINKER_SCRIPT_FLEXSPI_NOR
+#define BSP_LINKER_SCRIPT_RAM_INDUSTRY
 /* end of Hardware Drivers Config */
 
 #endif

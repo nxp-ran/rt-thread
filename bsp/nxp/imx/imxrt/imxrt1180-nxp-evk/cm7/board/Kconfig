@@ -706,7 +706,18 @@ menu "Onboard Peripheral Drivers"
                     Enable CM33 core to kick-off CM7 core startup. 
                     This is required for proper initialization sequence 
                     when CM33 (master) boots CM7 (remote) core.
-            
+
+            config BSP_USE_MULTICORE_KICK_OFF_EARLY
+                bool "CM33 uses early asynchronous kick-off"
+                depends on BSP_USE_MULTICORE_KICK_OFF
+                default n
+                help
+                    Match BSP_USE_MULTICORE_KICK_OFF_EARLY in the CM33 build.
+                    Without RPMsg, skip the startup-data handshake and continue
+                    without waiting for CM33. Disable this option when CM33
+                    uses synchronous startup, which requires CM7 acknowledgement.
+                    RPMsg still requires startup data for its shared-memory address.
+
             config BSP_USE_MULTICORE_RPMSG_LITE
                 bool "Enable RPMsg-Lite for Inter-Core Communication"
                 default y

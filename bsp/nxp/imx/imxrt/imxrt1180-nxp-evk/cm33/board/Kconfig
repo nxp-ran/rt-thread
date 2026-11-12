@@ -705,7 +705,16 @@ endmenu
                     Enable CM33 core to kick-off CM7 core startup. 
                     This is required for proper initialization sequence 
                     when CM33 (master) boots CM7 (remote) core.
-        
+
+            config BSP_USE_MULTICORE_KICK_OFF_EARLY
+                bool "Kick-off CM7 asynchronously in rt_hw_board_init"
+                depends on BSP_USE_MULTICORE_KICK_OFF
+                default n
+                help
+                    Start CM7 before heap and board component initialization.
+                    Do not wait for CM7 startup or RPMsg readiness in board init.
+                    When disabled, retain synchronous startup in the multicore thread.
+
             config BSP_USE_MULTICORE_RPMSG_LITE
                 bool "Enable RPMsg-Lite for Inter-Core Communication"
                 default y

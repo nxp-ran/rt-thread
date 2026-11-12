@@ -186,7 +186,12 @@ status_t BOARD_GetCore1ImageAddrSize(uint32_t *pImageSrcAddr,
                                      uint32_t *pImageDestAddr,
                                      uint32_t *pImageSize,
                                      uint32_t *pImageBootAddr);
-void BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint32_t image_size, uint32_t boot_addr);
+status_t BOARD_PrepareCore1(uint32_t image_src_addr, uint32_t image_dest_addr, uint32_t image_size, uint32_t boot_addr);
+
+#ifdef BSP_USE_MULTICORE_KICK_OFF_EARLY
+status_t BOARD_GetCore1KickoffStatus(void);
+uint32_t multicore_get_startup_data(void);
+#endif
 
 #if defined(__cplusplus)
 }

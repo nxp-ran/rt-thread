@@ -368,7 +368,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -377,7 +377,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -666,15 +666,15 @@
                 <option>
                     <name>OOCOutputFormat</name>
                     <version>3</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OCOutputOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>template.srec</state>
+                    <state>rtthread.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -682,7 +682,7 @@
                 </option>
                 <option>
                     <name>OOCObjCopyEnable</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
             </data>
         </settings>
@@ -1467,7 +1467,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -1476,7 +1476,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -1765,15 +1765,15 @@
                 <option>
                     <name>OOCOutputFormat</name>
                     <version>3</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OCOutputOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>template.srec</state>
+                    <state>rtthread.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -1781,7 +1781,7 @@
                 </option>
                 <option>
                     <name>OOCObjCopyEnable</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
             </data>
         </settings>
@@ -2566,7 +2566,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -2575,7 +2575,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -2864,15 +2864,15 @@
                 <option>
                     <name>OOCOutputFormat</name>
                     <version>3</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OCOutputOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>template.srec</state>
+                    <state>rtthread.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -2880,7 +2880,7 @@
                 </option>
                 <option>
                     <name>OOCObjCopyEnable</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
             </data>
         </settings>
@@ -3664,7 +3664,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -3673,7 +3673,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -3962,15 +3962,15 @@
                 <option>
                     <name>OOCOutputFormat</name>
                     <version>3</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OCOutputOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>template.srec</state>
+                    <state>rtthread.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -3978,7 +3978,7 @@
                 </option>
                 <option>
                     <name>OOCObjCopyEnable</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
             </data>
         </settings>
@@ -4763,7 +4763,7 @@
                 </option>
                 <option>
                     <name>CCOptLevel</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCOptStrategy</name>
@@ -4772,7 +4772,7 @@
                 </option>
                 <option>
                     <name>CCOptLevelSlave</name>
-                    <state>1</state>
+                    <state>3</state>
                 </option>
                 <option>
                     <name>CCPosIndRopi</name>
@@ -5061,15 +5061,15 @@
                 <option>
                     <name>OOCOutputFormat</name>
                     <version>3</version>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OCOutputOverride</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
                 <option>
                     <name>OOCOutputFile</name>
-                    <state>template.srec</state>
+                    <state>rtthread.hex</state>
                 </option>
                 <option>
                     <name>OOCCommandLineProducer</name>
@@ -5077,7 +5077,7 @@
                 </option>
                 <option>
                     <name>OOCObjCopyEnable</name>
-                    <state>0</state>
+                    <state>1</state>
                 </option>
             </data>
         </settings>
@@ -5867,7 +5867,7 @@
                     </option>
                     <option>
                         <name>CCOptLevel</name>
-                        <state>1</state>
+                        <state>3</state>
                     </option>
                     <option>
                         <name>CCOptStrategy</name>
@@ -5876,7 +5876,7 @@
                     </option>
                     <option>
                         <name>CCOptLevelSlave</name>
-                        <state>1</state>
+                        <state>3</state>
                     </option>
                     <option>
                         <name>CCPosIndRopi</name>
@@ -6165,15 +6165,15 @@
                     <option>
                         <name>OOCOutputFormat</name>
                         <version>3</version>
-                        <state>0</state>
+                        <state>1</state>
                     </option>
                     <option>
                         <name>OCOutputOverride</name>
-                        <state>0</state>
+                        <state>1</state>
                     </option>
                     <option>
                         <name>OOCOutputFile</name>
-                        <state>template.srec</state>
+                        <state>rtthread.hex</state>
                     </option>
                     <option>
                         <name>OOCCommandLineProducer</name>
@@ -6181,7 +6181,7 @@
                     </option>
                     <option>
                         <name>OOCObjCopyEnable</name>
-                        <state>0</state>
+                        <state>1</state>
                     </option>
                 </data>
             </settings>

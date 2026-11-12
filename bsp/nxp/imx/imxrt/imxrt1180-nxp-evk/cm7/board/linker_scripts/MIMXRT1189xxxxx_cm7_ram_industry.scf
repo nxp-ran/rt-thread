@@ -16,7 +16,7 @@
 #define m_flash_size                   0x01000000
 #define app_image_offset               0x0000B000
 #define vector_table_size              0x400
-#define m_ram_vector_table_start       m_itcm_start
+#define m_ram_vector_table_start       m_ocram1_start
 
 #if defined(__stack_size__)
 #define stack_size                     __stack_size__
@@ -34,24 +34,24 @@
 #define m_qadata_start                 m_dtcm_start
 #define m_qacode_size                  0
 #define m_qadata_size                  0
-#define m_text_size                    m_itcm_size
+#define m_text_size                    m_ocram1_size
 #define m_data_size                    m_dtcm_size
-#define m_text_start                   m_itcm_start
+#define m_text_start                   m_ocram1_start
 #define m_interrupts_start             m_text_start
 #define m_data_start                   m_dtcm_start
-#define m_ncache_size                  0x40000
-#define m_ncache_start                 m_ocram1_start + m_ocram1_size - m_ncache_size
-#define m_heap_start                   m_ocram1_start
+#define m_ncache_size                  0
+#define m_ncache_start                 0
+#define m_heap_start                   m_data_start + m_data_size - stack_size - heap_size
 #define m_ocram2_data_start            0x20520000
 #define m_ocram2_data_size             0x18000
 #define m_shmem_size                   0x8000
 #define m_shmem_start                  m_ocram2_start + m_ocram2_size - m_shmem_size
 
-#if !defined(__heap_noncacheable__) && (heap_size > (m_ncache_start - m_heap_start))
-#error Heap exceeds the cacheable OCRAM1 region
+#if (heap_size <= 0) || (stack_size <= 0) || ((heap_size + stack_size) >= m_data_size)
+#error Heap and stack exceed the DTCM allocation
 #endif
-#if defined(__heap_noncacheable__) && (heap_size > m_ncache_size)
-#error Heap exceeds the non-cacheable OCRAM1 region
+#if ((heap_size % 8) != 0) || ((stack_size % 8) != 0)
+#error Heap and stack sizes must be 8-byte aligned
 #endif
 
 LR_m_text m_text_start m_text_size
@@ -75,22 +75,17 @@ LR_m_text m_text_start m_text_size
   ER_m_QuickAccessData m_qadata_start EMPTY m_qadata_size
   {
   }
-  RW_m_data m_data_start m_data_size-stack_size
+  RW_m_data m_data_start m_data_size-stack_size-heap_size
   {
     .ANY (+RW +ZI)
     .ANY (DataQuickAccess)
-  }
-  RW_m_ncache m_ncache_start m_ncache_size
-  {
+    .ANY (NonCacheable)
     .ANY (NonCacheable.init)
     .ANY (.bss.NonCacheable)
   }
-#if defined(__heap_noncacheable__)
-  ARM_LIB_HEAP +0 ALIGN 0x100 EMPTY heap_size
+  RW_m_ncache m_ncache_start EMPTY m_ncache_size
   {
   }
-  ScatterAssert(ImageLimit(ARM_LIB_HEAP) <= (m_ncache_start + m_ncache_size))
-#endif
   RW_m_ncache_aux m_ncache_start + m_ncache_size EMPTY 0
   {
   }
@@ -106,11 +101,9 @@ LR_m_text m_text_start m_text_size
   {
   }
 #endif
-#if !defined(__heap_noncacheable__)
   ARM_LIB_HEAP m_heap_start EMPTY heap_size
   {
   }
-#endif
   ARM_LIB_STACK m_data_start+m_data_size EMPTY -stack_size
   {
   }

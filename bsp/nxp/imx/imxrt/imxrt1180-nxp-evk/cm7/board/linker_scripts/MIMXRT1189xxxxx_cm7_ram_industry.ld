@@ -24,23 +24,22 @@ m_qacode_start           = m_itcm_start + (DEFINED(__ram_vector_table__) ? vecto
 m_qacode_end             = m_itcm_start + m_itcm_size - 1;
 m_qadata_start           = m_dtcm_start;
 m_qadata_end             = m_dtcm_start + m_dtcm_size - 1;
-m_ram_vector_table_start = m_itcm_start;
+m_ram_vector_table_start = m_ocram1_start;
 m_stack_size             = DEFINED(__stack_size__) ? __stack_size__ : 0x1000;
 m_heap_size              = DEFINED(__heap_size__) ? __heap_size__ : 0x10000;
-m_code_size              = m_itcm_size - vector_table_size;
-m_data_size              = m_dtcm_size;
-m_ncache_size            = 0x40000;
+m_code_size              = m_ocram1_size - vector_table_size;
+m_data_size              = m_dtcm_size - m_heap_size - m_stack_size;
+m_ncache_size            = 0;
 m_shmem_size             = 0x8000;
 m_ram_vector_table_size  = 0;
-m_interrupts_start       = m_itcm_start;
+m_interrupts_start       = m_ocram1_start;
 m_interrupts_end         = m_interrupts_start + vector_table_size - 1;
 m_text_start             = m_interrupts_end + 1;
 m_text_end               = m_text_start + m_code_size - 1;
 m_data_start             = m_dtcm_start;
 m_data_end               = m_data_start + m_data_size - 1;
-m_ncache_start           = m_ocram1_start + m_ocram1_size - m_ncache_size;
-m_ncache_end             = m_ncache_start + m_ncache_size - 1 - (DEFINED(__heap_noncacheable__) ? m_heap_size : 0);
-m_heap_start             = DEFINED(__heap_noncacheable__) ? m_ncache_end + 1 : m_ocram1_start;
+m_ncache_start           = 0;
+m_heap_start             = m_data_end + 1;
 m_heap_end               = m_heap_start + m_heap_size - 1;
 m_ocram2_data_start      = 0x20520000;
 m_ocram2_data_size       = 0x18000;
@@ -59,7 +58,9 @@ __RPMSG_SH_MEM_START  = DEFINED(__use_shmem__) ? m_rpmsg_sh_mem_start : 0;
 __RPMSG_SH_MEM_SIZE   = DEFINED(__use_shmem__) ? m_shmem_size : 0;
 
 ASSERT(m_heap_size > 0, "heap size must be positive")
-ASSERT(m_heap_end < (DEFINED(__heap_noncacheable__) ? m_ncache_start + m_ncache_size : m_ncache_start), "heap exceeds OCRAM1 allocation")
+ASSERT(m_stack_size > 0, "stack size must be positive")
+ASSERT(m_heap_size + m_stack_size < m_dtcm_size, "heap and stack exceed DTCM allocation")
+ASSERT((m_heap_size % 8) == 0 && (m_stack_size % 8) == 0, "heap and stack sizes must be 8-byte aligned")
 
 MEMORY
 {
@@ -67,10 +68,9 @@ MEMORY
   m_interrupts     (RX) : ORIGIN = m_interrupts_start, LENGTH = vector_table_size
   m_text           (RX) : ORIGIN = m_text_start, LENGTH = m_code_size
   m_data           (RW) : ORIGIN = m_data_start, LENGTH = m_data_size
-  m_ncache         (RW) : ORIGIN = m_ncache_start, LENGTH = m_ncache_end - m_ncache_start + 1
   m_heap           (RW) : ORIGIN = m_heap_start, LENGTH = m_heap_size
+  m_stack          (RW) : ORIGIN = m_heap_end + 1, LENGTH = m_stack_size
   m_qacode         (RX) : ORIGIN = m_qacode_start, LENGTH = m_qacode_end - m_qacode_start + 1
-  m_qadata         (RW) : ORIGIN = m_qadata_start, LENGTH = m_qadata_end - m_qadata_start + 1
   m_ocram2_data    (RW) : ORIGIN = m_ocram2_data_start, LENGTH = m_ocram2_data_size
   m_rpmsg          (RW) : ORIGIN = m_rpmsg_sh_mem_start, LENGTH = m_shmem_size
 }
@@ -198,15 +198,16 @@ SECTIONS
     *(NonCacheable.init)
     . = ALIGN(4);
     __noncache_data_end__ = .;
-  } > m_ncache
+  } > m_data
   .ncache :
   {
     . = ALIGN(4);
     __noncache_bss_start__ = .;
     *(NonCacheable)
+    *(.bss.NonCacheable)
     . = ALIGN(4);
     __noncache_bss_end__ = .;
-  } > m_ncache
+  } > m_data
 
   __qadata_flash_start = __noncache_data_flash_start + (__noncache_data_end__ - __noncache_data_start__);
   .qadata : AT(__qadata_flash_start)
@@ -215,10 +216,10 @@ SECTIONS
     __qadata_start__ = .;
     . = ALIGN(4);
     __qadata_end__ = .;
-  } > m_qadata
+  } > m_data
   text_data_end = __qadata_flash_start + (__qadata_end__ - __qadata_start__);
   text_end = ORIGIN(m_text) + LENGTH(m_text);
-  ASSERT(text_data_end < text_end, "region m_text overflowed with text and data")
+  ASSERT(text_data_end <= text_end, "OCRAM1 overflowed with code and initialization data")
 
   .bss :
   {
@@ -249,11 +250,11 @@ SECTIONS
     . = ALIGN(8);
     __StackStart = .;
     . += m_stack_size;
-  } > m_data
-  __StackTop = ORIGIN(m_data) + LENGTH(m_data);
+  } > m_stack
+  __StackTop = ORIGIN(m_stack) + LENGTH(m_stack);
   __StackLimit = __StackTop - m_stack_size;
   PROVIDE(__stack = __StackTop);
   PROVIDE(__stack_size = m_stack_size);
-  ASSERT(__StackLimit >= __StackStart, "region m_data overflowed with stack and heap")
+  ASSERT(__StackLimit == __StackStart, "stack placement does not match DTCM allocation")
   .ARM.attributes 0 : { *(.ARM.attributes) }
 }
