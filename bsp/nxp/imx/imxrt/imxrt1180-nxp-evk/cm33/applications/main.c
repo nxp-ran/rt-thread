@@ -10,14 +10,17 @@
  */
 
 #include <rtthread.h>
+#ifdef BSP_USING_LED_BLINK
 #include <rtdevice.h>
 #include <drv_gpio.h>
 
 #define LED_PIN GET_PIN(4, 27)
+#endif
 
 int main(void)
 {
     rt_kprintf("MIMXRT1180_CM33 Hello_World\r\n");
+#ifdef BSP_USING_LED_BLINK
     rt_pin_mode(LED_PIN, PIN_MODE_OUTPUT);
 
     while (1)
@@ -27,6 +30,8 @@ int main(void)
         rt_pin_write(LED_PIN, PIN_LOW);
         rt_thread_mdelay(500);
     }
+#endif
+    return 0;
 }
 
 
